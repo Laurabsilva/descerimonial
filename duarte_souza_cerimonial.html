@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duarte & Souza Cerimonial | 15 Anos e Eventos Sociais</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS Script -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- TailWind Config for Custom Brand Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#F8F4F8',          /* Lilás/Rosa pastel bem suave */
+                            card: '#FCFAF9',        /* Off-white para cards */
+                            pinkLight: '#EBDDE8',   /* Borda suave e destaque leve */
+                            pinkMedium: '#D5BACF',  /* Rosa/Lilás intermediário */
+                            accent: '#835493',      /* Roxo elegante dos destaques */
+                            accentHover: '#6D3F7D', /* Roxo escuro para hover */
+                            dark: '#2A202D'         /* Grafite/Escuro com toque arroxeado */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F4F8;
+            color: #2A202D;
+        }
+
+        .serif-title {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Suave sombra para os cards */
+        .card-shadow {
+            box-shadow: 0 10px 30px -10px rgba(131, 84, 147, 0.12);
+        }
+
+        /* Efeito de zoom suave em imagens */
+        .img-zoom {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .img-zoom:hover {
+            transform: scale(1.03);
+        }
+
+        /* Indicador visual de elemento editável quando no modo Admin */
+        body.admin-active .editable-text {
+            outline: 2px dashed #835493;
+            outline-offset: 4px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: outline 0.2s ease;
+        }
+        body.admin-active .editable-text:hover {
+            outline: 2px solid #835493;
+            background-color: rgba(235, 221, 232, 0.3);
+        }
+
+        /* Overlay de controle de imagem no modo Admin */
+        .image-overlay-controls {
+            display: none;
+        }
+        body.admin-active .image-wrapper:hover .image-overlay-controls,
+        body.admin-active .image-wrapper:focus-within .image-overlay-controls {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="bg-brand-bg text-brand-dark antialiased selection:bg-brand-pinkLight selection:text-brand-accent">
+
+    <!-- BARRA FIXA MODO EDINHO / ADMIN BAR (Visível apenas quando logado) -->
+    <div id="admin-top-bar" class="hidden bg-brand-dark text-white sticky top-0 z-50 py-2.5 px-4 sm:px-8 border-b-2 border-brand-accent shadow-md">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm">
+            <div class="flex items-center space-x-2">
+                <span class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></span>
+                <strong class="font-semibold text-brand-pinkLight">Modo Edição Ativo</strong>
+                <span class="hidden sm:inline text-gray-300">| Clique em qualquer texto para alterar ou use os botões sobre as fotos</span>
+            </div>
+            <div class="flex items-center space-x-2">
+                <button onclick="saveAllChanges()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold transition-all flex items-center shadow-sm">
+                    <i class="fa-solid fa-floppy-disk mr-1.5"></i> Salvar Alterações
+                </button>
+                <button onclick="resetToDefaults()" class="px-2.5 py-1.5 bg-gray-700 hover:bg-gray-600 text-gray-200 rounded-lg transition-all" title="Restaurar Conteúdo Original">
+                    <i class="fa-solid fa-rotate-left"></i>
+                </button>
+                <button onclick="exitAdminMode()" class="px-3 py-1.5 bg-red-600/80 hover:bg-red-600 text-white rounded-lg transition-all">
+                    <i class="fa-solid fa-xmark mr-1"></i> Sair
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOP BAR SLOGAN -->
+    <div class="bg-brand-accent text-white py-3 text-center text-xs sm:text-sm font-medium tracking-wider px-4 shadow-sm relative z-40">
+        <i class="fa-solid fa-sparkles text-amber-200 mr-2"></i>
+        <span class="editable-text" data-key="topbar-slogan">Nós cuidamos de cada detalhe, você vive cada momento.</span>
+    </div>
+
+    <!-- CABEÇALHO DA PÁGINA (Com mais espaçamento e área de respiro) -->
+    <header class="bg-white/95 backdrop-blur-md border-b border-brand-pinkLight sticky top-0 z-40 shadow-sm py-4">
+        <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 h-28 flex items-center justify-between">
+            
+            <!-- Logo Duarte & Souza com amplo espaçamento vertical e margem interna -->
+            <a href="#" class="flex flex-col group py-3 pr-6 sm:pr-10 border-r border-brand-pinkLight/60">
+                <span class="text-[11px] sm:text-xs uppercase tracking-[0.35em] text-brand-accent font-semibold mb-1 editable-text" data-key="brand-sub">Duarte & Souza</span>
+                <span class="serif-title text-2xl sm:text-3xl font-bold text-brand-dark tracking-wide leading-tight group-hover:text-brand-accent transition-colors editable-text" data-key="brand-main">CERIMONIAL</span>
+            </a>
+
+            <!-- Menu Desktop com espaçamento generoso entre itens -->
+            <nav class="hidden md:flex items-center space-x-8 lg:space-x-10 text-sm font-medium pl-4 sm:pl-8">
+                <a href="#quem-somos" class="hover:text-brand-accent transition-colors py-2 px-1">Quem Somos</a>
+                <a href="#diferenciais" class="hover:text-brand-accent transition-colors py-2 px-1">Diferenciais</a>
+                <a href="#como-funciona" class="hover:text-brand-accent transition-colors py-2 px-1">Como Funciona</a>
+                <a href="#portfolio" class="hover:text-brand-accent transition-colors py-2 px-1">Portfólio</a>
+                <a href="#pacotes" class="hover:text-brand-accent transition-colors py-2 px-1">Pacotes</a>
+                <a href="#depoimentos" class="hover:text-brand-accent transition-colors py-2 px-1">Depoimentos</a>
+                <button onclick="openLoginModal()" id="nav-login-btn" class="text-xs px-4 py-2.5 rounded-full border border-brand-accent/40 text-brand-accent hover:bg-brand-accent hover:text-white transition-all ml-4">
+                    <i class="fa-solid fa-lock text-xs mr-1.5"></i> Área Admin
+                </button>
+            </nav>
+
+            <!-- Botão WhatsApp Topo com Seletor -->
+            <button onclick="openWhatsAppModal('Atendimento Geral')" 
+               class="hidden sm:inline-flex items-center justify-center px-6 py-3.5 rounded-full bg-brand-accent text-white text-sm font-semibold shadow-md hover:bg-brand-accentHover transition-all transform hover:-translate-y-0.5 cursor-pointer ml-6">
+                <i class="fa-brands fa-whatsapp mr-2 text-lg"></i> Falar Conosco
+            </button>
+
+            <!-- Botão Menu Mobile -->
+            <button id="mobile-menu-btn" class="md:hidden p-2.5 text-brand-dark hover:text-brand-accent focus:outline-none rounded-lg hover:bg-brand-bg transition-colors ml-4" aria-label="Abrir Menu">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Dropdown Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-card border-b border-brand-pinkLight px-6 pt-3 pb-8 space-y-4 text-center">
+            <a href="#quem-somos" class="block py-2.5 text-sm font-medium hover:text-brand-accent border-b border-gray-100" onclick="toggleMenu()">Quem Somos</a>
+            <a href="#diferenciais" class="block py-2.5 text-sm font-medium hover:text-brand-accent border-b border-gray-100" onclick="toggleMenu()">Diferenciais</a>
+            <a href="#como-funciona" class="block py-2.5 text-sm font-medium hover:text-brand-accent border-b border-gray-100" onclick="toggleMenu()">Como Funciona</a>
+            <a href="#portfolio" class="block py-2.5 text-sm font-medium hover:text-brand-accent border-b border-gray-100" onclick="toggleMenu()">Portfólio</a>
+            <a href="#pacotes" class="block py-2.5 text-sm font-medium hover:text-brand-accent border-b border-gray-100" onclick="toggleMenu()">Pacotes</a>
+            <a href="#depoimentos" class="block py-2.5 text-sm font-medium hover:text-brand-accent border-b border-gray-100" onclick="toggleMenu()">Depoimentos</a>
+            <button onclick="openLoginModal(); toggleMenu();" class="block w-full py-2.5 text-sm font-medium text-brand-accent border border-brand-accent/30 rounded-full my-3">
+                <i class="fa-solid fa-lock text-xs mr-1.5"></i> Área do Administrador
+            </button>
+            <button onclick="openWhatsAppModal('Atendimento Mobile')" class="inline-block w-full py-3.5 rounded-full bg-brand-accent text-white font-medium text-sm shadow-md">
+                <i class="fa-brands fa-whatsapp mr-2"></i> Solicitar Orçamento
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (Espaçamento superior ampliado) -->
+    <section class="pt-20 pb-20 md:pt-28 md:pb-28 bg-gradient-to-b from-white via-brand-bg to-brand-bg relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-brand-pinkLight text-brand-accent text-xs uppercase font-bold tracking-widest mb-6 editable-text" data-key="hero-tag">
+                Portfólio & Proposta Comercial
+            </span>
+            
+            <h1 class="serif-title text-5xl sm:text-6xl md:text-7xl font-bold text-brand-dark leading-tight mb-6">
+                <span class="editable-text" data-key="hero-title-main">Duarte & Souza</span> <br>
+                <span class="italic font-normal text-brand-accent editable-text" data-key="hero-title-sub">Cerimonial</span>
+            </h1>
+
+            <p class="max-w-2xl mx-auto text-base sm:text-lg text-gray-700 font-normal leading-relaxed mb-10 editable-text" data-key="hero-desc" id="text-hero-desc">
+                Especialistas em transformar festas de 15 anos e momentos inesquecíveis em celebrações leves, perfeitamente organizadas e cheias de emoção.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#pacotes" class="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-accent text-white font-medium shadow-lg hover:bg-brand-accentHover transition-all transform hover:-translate-y-0.5">
+                    Conhecer Pacotes <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                </a>
+                <button onclick="openWhatsAppModal('Falar com a Equipe')" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-brand-dark font-medium border border-brand-pinkLight shadow-sm hover:bg-brand-card transition-all flex items-center justify-center">
+                    <i class="fa-brands fa-whatsapp text-green-600 text-lg mr-2"></i> Chamar no WhatsApp
+                </button>
+            </div>
+        </div>
+
+        <!-- Banner com foto estilizada de fundo suave -->
+        <div class="mt-16 max-w-6xl mx-auto px-4">
+            <div class="image-wrapper rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[21/9] bg-brand-pinkLight relative group">
+                <img id="img-hero-banner"
+                     src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80" 
+                     alt="Cerimonial de Eventos e 15 anos" 
+                     class="w-full h-full object-cover"
+                     onerror="this.src='https://placehold.co/1200x500/EBDDE8/835493?text=Duarte+%26+Souza+Cerimonial'">
+                
+                <!-- Overlay de edição para foto de capa -->
+                <div class="image-overlay-controls absolute inset-0 bg-black/60 backdrop-blur-xs flex-col items-center justify-center p-4 transition-opacity z-20">
+                    <p class="text-white text-xs font-bold mb-3"><i class="fa-solid fa-image mr-1"></i> Alterar Imagem de Destaque</p>
+                    <div class="flex flex-wrap items-center justify-center gap-2">
+                        <button onclick="changeImageUrl('img-hero-banner')" class="px-3 py-2 bg-brand-accent text-white text-xs font-bold rounded-lg hover:bg-brand-accentHover">
+                            <i class="fa-solid fa-link mr-1"></i> Colar URL
+                        </button>
+                        <button onclick="triggerFileInput('img-hero-banner')" class="px-3 py-2 bg-white text-brand-dark text-xs font-bold rounded-lg hover:bg-gray-100">
+                            <i class="fa-solid fa-upload mr-1"></i> Enviar Arquivo
+                        </button>
+                    </div>
+                </div>
+
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-8 sm:p-12 pointer-events-none z-10">
+                    <p class="serif-title text-white text-2xl sm:text-3xl italic editable-text pointer-events-auto" data-key="hero-quote">
+                        "Nós cuidamos de cada detalhe, você vive cada momento."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 1: QUEM SOMOS -->
+    <section id="quem-somos" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs uppercase tracking-widest text-brand-accent font-semibold editable-text" data-key="qs-tag">DUARTE & SOUZA CERIMONIAL</span>
+                <h2 class="serif-title text-4xl sm:text-5xl font-bold text-brand-dark mt-2 mb-4 editable-text" data-key="qs-title">Quem somos?</h2>
+                <div class="w-16 h-0.5 bg-brand-accent mx-auto"></div>
+            </div>
+
+            <!-- Fotos de Comparativo / História -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                
+                <!-- Card 2018 -->
+                <div class="bg-brand-card rounded-3xl p-6 border border-brand-pinkLight card-shadow text-center">
+                    <div class="image-wrapper aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-brand-pinkLight relative group">
+                        <img id="img-qs-2018"
+                             src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" 
+                             alt="Equipe D&S 2018" 
+                             class="w-full h-full object-cover img-zoom"
+                             onerror="this.src='https://placehold.co/600x450/EBDDE8/835493?text=Nossa+Hist%C3%B3ria+2018'">
+                        
+                        <div class="image-overlay-controls absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-4">
+                            <span class="text-white text-xs font-bold mb-2">Trocar Foto 2018</span>
+                            <div class="flex gap-2">
+                                <button onclick="changeImageUrl('img-qs-2018')" class="px-2.5 py-1.5 bg-brand-accent text-white text-xs rounded">URL</button>
+                                <button onclick="triggerFileInput('img-qs-2018')" class="px-2.5 py-1.5 bg-white text-brand-dark text-xs rounded">Upload</button>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="inline-block px-4 py-1 rounded-full bg-brand-pinkLight text-brand-accent font-bold text-sm editable-text" data-key="qs-year1">
+                        2018
+                    </span>
+                    <p class="text-xs text-gray-500 mt-2 editable-text" data-key="qs-year1-desc">O início da nossa trajetória no universo de eventos</p>
+                </div>
+
+                <!-- Card 2026 -->
+                <div class="bg-brand-card rounded-3xl p-6 border border-brand-pinkLight card-shadow text-center">
+                    <div class="image-wrapper aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-brand-pinkLight relative group">
+                        <img id="img-qs-2026"
+                             src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80" 
+                             alt="Equipe D&S 2026" 
+                             class="w-full h-full object-cover img-zoom"
+                             onerror="this.src='https://placehold.co/600x450/EBDDE8/835493?text=Equipe+2026'">
+                        
+                        <div class="image-overlay-controls absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-4">
+                            <span class="text-white text-xs font-bold mb-2">Trocar Foto Atualmente</span>
+                            <div class="flex gap-2">
+                                <button onclick="changeImageUrl('img-qs-2026')" class="px-2.5 py-1.5 bg-brand-accent text-white text-xs rounded">URL</button>
+                                <button onclick="triggerFileInput('img-qs-2026')" class="px-2.5 py-1.5 bg-white text-brand-dark text-xs rounded">Upload</button>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="inline-block px-4 py-1 rounded-full bg-brand-accent text-white font-bold text-sm editable-text" data-key="qs-year2">
+                        2026
+                    </span>
+                    <p class="text-xs text-gray-500 mt-2 editable-text" data-key="qs-year2-desc">Experiência consolidada, inovação e excelência em cada celebração</p>
+                </div>
+
+            </div>
+
+            <!-- Texto de Apresentação -->
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-lg sm:text-xl text-gray-700 leading-relaxed font-normal editable-text" data-key="qs-body-text">
+                    A D&S Cerimonial nasceu da união de duas irmãs apaixonadas por celebrações. Acreditamos que cada festa de 15 anos ou comemoração especial merece ser vivida com leveza... enquanto nós cuidamos de toda a organização, dos primeiros planos ao último detalhe do grande dia.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 5: NOSSOS DIFERENCIAIS -->
+    <section id="diferenciais" class="py-20 bg-brand-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs uppercase tracking-widest text-brand-accent font-semibold editable-text" data-key="dif-tag">Pilares da D&S</span>
+                <h2 class="serif-title text-4xl sm:text-5xl font-bold text-brand-dark mt-2 editable-text" data-key="dif-title">O que entregamos</h2>
+            </div>
+
+            <!-- Badges/Pílulas dos conceitos do slide 5 -->
+            <div class="flex flex-wrap justify-center gap-4 mb-16">
+                <span class="px-6 py-3 rounded-full border-2 border-brand-dark bg-white text-brand-dark font-semibold text-sm sm:text-base shadow-sm editable-text" data-key="pill-1">ORGANIZAÇÃO</span>
+                <span class="px-6 py-3 rounded-full border-2 border-brand-dark bg-white text-brand-dark font-semibold text-sm sm:text-base shadow-sm editable-text" data-key="pill-2">EXECUÇÃO</span>
+                <span class="px-6 py-3 rounded-full border-2 border-brand-dark bg-white text-brand-dark font-semibold text-sm sm:text-base shadow-sm editable-text" data-key="pill-3">ORIENTAÇÃO</span>
+                <span class="px-6 py-3 rounded-full border-2 border-brand-dark bg-white text-brand-dark font-semibold text-sm sm:text-base shadow-sm editable-text" data-key="pill-4">ACOMPANHAMENTO</span>
+                <span class="px-6 py-3 rounded-full border-2 border-brand-dark bg-white text-brand-dark font-semibold text-sm sm:text-base shadow-sm editable-text" data-key="pill-5">SUPORTE</span>
+            </div>
+
+            <!-- Grid de Experiência Completa (Slide 9) -->
+            <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-sm border border-brand-pinkLight">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <div class="lg:col-span-5">
+                        <h3 class="serif-title text-3xl sm:text-4xl font-bold text-brand-dark leading-tight mb-4 editable-text" data-key="exp-title">
+                            Entregamos uma experiência completa
+                        </h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6 editable-text" data-key="exp-subtitle">
+                            Nosso compromisso é transformar o período de preparação da festa em momentos de alegria, sem estresse ou preocupações técnicas.
+                        </p>
+                        <div class="image-wrapper aspect-[4/3] rounded-2xl overflow-hidden bg-brand-pinkLight relative group">
+                            <img id="img-exp-complete"
+                                 src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=800&q=80" 
+                                 alt="Festa de 15 anos animada" 
+                                 class="w-full h-full object-cover"
+                                 onerror="this.src='https://placehold.co/600x450/EBDDE8/835493?text=Experi%C3%AAncia+Incr%C3%ADvel'">
+                            
+                            <div class="image-overlay-controls absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-4">
+                                <span class="text-white text-xs font-bold mb-2">Alterar Foto</span>
+                                <div class="flex gap-2">
+                                    <button onclick="changeImageUrl('img-exp-complete')" class="px-2.5 py-1.5 bg-brand-accent text-white text-xs rounded">URL</button>
+                                    <button onclick="triggerFileInput('img-exp-complete')" class="px-2.5 py-1.5 bg-white text-brand-dark text-xs rounded">Upload</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        
+                        <div class="p-5 rounded-2xl bg-brand-bg border border-brand-pinkLight">
+                            <div class="w-10 h-10 rounded-full bg-brand-pinkLight text-brand-accent flex items-center justify-center font-bold mb-3">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <h4 class="font-bold text-brand-dark text-base mb-1 editable-text" data-key="item1-title">Planejamento personalizado</h4>
+                            <p class="text-xs text-gray-600 editable-text" data-key="item1-desc">Roteiros feitos sob medida respeitando o estilo da debutante.</p>
+                        </div>
+
+                        <div class="p-5 rounded-2xl bg-brand-bg border border-brand-pinkLight">
+                            <div class="w-10 h-10 rounded-full bg-brand-pinkLight text-brand-accent flex items-center justify-center font-bold mb-3">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <h4 class="font-bold text-brand-dark text-base mb-1 editable-text" data-key="item2-title">Organização impecável</h4>
+                            <p class="text-xs text-gray-600 editable-text" data-key="item2-desc">Cronograma de horários rigorosamente alinhado com fornecedores.</p>
+                        </div>
+
+                        <div class="p-5 rounded-2xl bg-brand-bg border border-brand-pinkLight">
+                            <div class="w-10 h-10 rounded-full bg-brand-pinkLight text-brand-accent flex items-center justify-center font-bold mb-3">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <h4 class="font-bold text-brand-dark text-base mb-1 editable-text" data-key="item3-title">Atendimento próximo e humanizado</h4>
+                            <p class="text-xs text-gray-600 editable-text" data-key="item3-desc">Comunicação clara, carinho e acolhimento em todas as etapas.</p>
+                        </div>
+
+                        <div class="p-5 rounded-2xl bg-brand-bg border border-brand-pinkLight">
+                            <div class="w-10 h-10 rounded-full bg-brand-pinkLight text-brand-accent flex items-center justify-center font-bold mb-3">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <h4 class="font-bold text-brand-dark text-base mb-1 editable-text" data-key="item4-title">Assessoria completa</h4>
+                            <p class="text-xs text-gray-600 editable-text" data-key="item4-desc">Orientação contínua antes, durante e no encerramento da festa.</p>
+                        </div>
+
+                        <div class="p-5 rounded-2xl bg-brand-bg border border-brand-pinkLight">
+                            <div class="w-10 h-10 rounded-full bg-brand-pinkLight text-brand-accent flex items-center justify-center font-bold mb-3">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <h4 class="font-bold text-brand-dark text-base mb-1 editable-text" data-key="item5-title">Cuidado em cada detalhe</h4>
+                            <p class="text-xs text-gray-600 editable-text" data-key="item5-desc">Acompanhamento dos protocolos de valsa, trocas de vestido e homenagens.</p>
+                        </div>
+
+                        <div class="p-5 rounded-2xl bg-brand-bg border border-brand-pinkLight">
+                            <div class="w-10 h-10 rounded-full bg-brand-pinkLight text-brand-accent flex items-center justify-center font-bold mb-3">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <h4 class="font-bold text-brand-dark text-base mb-1 editable-text" data-key="item6-title">Experiência leve e tranquila</h4>
+                            <p class="text-xs text-gray-600 editable-text" data-key="item6-desc">Sua família como convidada de honra da sua própria festa.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 6: COMO FUNCIONA? -->
+    <section id="como-funciona" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Título e Imagem -->
+                <div class="lg:col-span-4">
+                    <span class="text-xs uppercase tracking-widest text-brand-accent font-semibold editable-text" data-key="cf-tag">Passo a Passo</span>
+                    <h2 class="serif-title text-4xl sm:text-5xl font-bold text-brand-dark mt-2 mb-4 leading-tight editable-text" data-key="cf-title">
+                        Como Funciona?
+                    </h2>
+                    <p class="text-gray-600 text-sm mb-6 editable-text" data-key="cf-desc">
+                        Processo simples, profissional e personalizado para o seu evento.
+                    </p>
+                    <div class="image-wrapper aspect-[4/3] rounded-2xl overflow-hidden bg-brand-pinkLight shadow-md relative group">
+                        <img id="img-cf-side"
+                             src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80" 
+                             alt="Decoração de Evento D&S" 
+                             class="w-full h-full object-cover"
+                             onerror="this.src='https://placehold.co/600x450/EBDDE8/835493?text=Decora%C3%A7%C3%A3o+de+Festas'">
+                        
+                        <div class="image-overlay-controls absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-4">
+                            <span class="text-white text-xs font-bold mb-2">Trocar Foto</span>
+                            <div class="flex gap-2">
+                                <button onclick="changeImageUrl('img-cf-side')" class="px-2.5 py-1.5 bg-brand-accent text-white text-xs rounded">URL</button>
+                                <button onclick="triggerFileInput('img-cf-side')" class="px-2.5 py-1.5 bg-white text-brand-dark text-xs rounded">Upload</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Etapas de a) a d) -->
+                <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    
+                    <!-- a) Briefing -->
+                    <div class="p-6 rounded-3xl bg-brand-bg border border-brand-pinkLight card-shadow">
+                        <span class="serif-title text-3xl font-bold text-brand-accent block mb-2 editable-text" data-key="step-a-title">a) Briefing</span>
+                        <p class="text-sm text-gray-700 leading-relaxed editable-text" data-key="step-a-desc">
+                            Entendemos seus sonhos, preferências e todas as suas necessidades para o grande dia.
+                        </p>
+                    </div>
+
+                    <!-- b) Planejamento -->
+                    <div class="p-6 rounded-3xl bg-brand-bg border border-brand-pinkLight card-shadow">
+                        <span class="serif-title text-3xl font-bold text-brand-accent block mb-2 editable-text" data-key="step-b-title">b) Planejamento</span>
+                        <p class="text-sm text-gray-700 leading-relaxed editable-text" data-key="step-b-desc">
+                            Organizamos cada detalhe do seu evento, elaborando cronogramas e fluxos de recepção.
+                        </p>
+                    </div>
+
+                    <!-- c) Coordenação -->
+                    <div class="p-6 rounded-3xl bg-brand-bg border border-brand-pinkLight card-shadow">
+                        <span class="serif-title text-3xl font-bold text-brand-accent block mb-2 editable-text" data-key="step-c-title">c) Coordenação</span>
+                        <p class="text-sm text-gray-700 leading-relaxed editable-text" data-key="step-c-desc">
+                            Organizamos os ensaios, alinhamos fornecedores e deixamos todos os detalhes preparados para o evento.
+                        </p>
+                    </div>
+
+                    <!-- d) O grande dia -->
+                    <div class="p-6 rounded-3xl bg-brand-bg border border-brand-pinkLight card-shadow">
+                        <span class="serif-title text-3xl font-bold text-brand-accent block mb-2 editable-text" data-key="step-d-title">d) O grande dia</span>
+                        <p class="text-sm text-gray-700 leading-relaxed editable-text" data-key="step-d-desc">
+                            Colocamos tudo em prática, acompanhando cada momento para que vocês possam aproveitar a celebração com tranquilidade.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIA DE FOTOS DOS EVENTOS (SLIDES 2, 3, 4) -->
+    <section id="portfolio" class="py-20 bg-brand-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs uppercase tracking-widest text-brand-accent font-semibold editable-text" data-key="gal-tag">Galeria de Eventos</span>
+                <h2 class="serif-title text-4xl sm:text-5xl font-bold text-brand-dark mt-2 mb-4 editable-text" data-key="gal-title">Fotos Eventos Realizados</h2>
+                <p class="text-gray-600 text-sm editable-text" data-key="gal-subtitle">Conheça algumas das festas inesquecíveis que tivemos o privilégio de organizar.</p>
+                
+                <!-- Botão de adicionar nova foto rápida (Admin) -->
+                <div class="mt-6 flex justify-center">
+                    <button onclick="promptAddNewPhotoCard()" class="admin-only hidden px-5 py-2.5 bg-emerald-600 text-white text-xs font-bold rounded-full hover:bg-emerald-700 transition-all shadow-md items-center">
+                        <i class="fa-solid fa-plus-circle mr-2"></i> Adicionar Nova Foto ao Portfólio
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filtros de Eventos -->
+            <div class="flex flex-wrap justify-center gap-2 mb-10">
+                <button onclick="filterGallery('all')" class="gallery-filter-btn px-5 py-2 rounded-full bg-brand-accent text-white text-xs font-semibold shadow-sm transition-all" data-filter="all">Todas as Festas</button>
+                <button onclick="filterGallery('victoria')" class="gallery-filter-btn px-5 py-2 rounded-full bg-white text-brand-dark border border-brand-pinkLight text-xs font-semibold hover:border-brand-accent transition-all" data-filter="victoria">Victória XV Anos</button>
+                <button onclick="filterGallery('laura')" class="gallery-filter-btn px-5 py-2 rounded-full bg-white text-brand-dark border border-brand-pinkLight text-xs font-semibold hover:border-brand-accent transition-all" data-filter="laura">Laura XV Anos</button>
+                <button onclick="filterGallery('lara')" class="gallery-filter-btn px-5 py-2 rounded-full bg-white text-brand-dark border border-brand-pinkLight text-xs font-semibold hover:border-brand-accent transition-all" data-filter="lara">Lara XV Anos</button>
+            </div>
+
+            <!-- Grid de Fotos da Galeria -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-container">
+                
+                <!-- Victória Card -->
+                <div class="gallery-item victoria bg-white rounded-2xl overflow-hidden shadow-sm border border-brand-pinkLight group relative">
+                    <div class="image-wrapper relative aspect-[4/3] overflow-hidden">
+                        <img id="img-gal-vic"
+                             src="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?auto=format&fit=crop&w=600&q=80" 
+                             alt="Victória 15 Anos" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x450/EBDDE8/835493?text=Vict%C3%B3ria+XV'">
+                        
+                        <div class="image-overlay-controls absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-4">
+                            <span class="text-white text-xs font-bold mb-2">Trocar Imagem</span>
+                            <div class="flex gap-2">
+                                <button onclick="changeImageUrl('img-gal-vic')" class="px-2.5 py-1.5 bg-brand-accent text-white text-xs rounded">URL</button>
+                                <button onclick="triggerFileInput('img-gal-vic')" class="px-2.5 py-1.5 bg-white text-brand-dark text-xs rounded">Upload</button>
+                            </div>
+                        </div>
+
+                        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                            <span class="text-white text-xs uppercase tracking-widest bg-brand-accent/80 px-3 py-1 rounded-full pointer-events-auto editable-text" data-key="gal-vic-tag">Decoração Azul & Prata</span>
+                        </div>
+                    </div>
+                    <div class="p-4 text-center relative">
+                        <h3 class="serif-title text-xl font-bold text-brand-dark editable-text" data-key="gal-vic-title">VICTÓRIA XV ANOS</h3>
+                        <p class="text-xs text-gray-500 mt-1 editable-text" data-key="gal-vic-desc">Cerimonial com troca de sapatos e balada animada</p>
+                        <button onclick="removeGalleryCard(this)" class="admin-only hidden absolute top-2 right-2 text-xs text-red-500 hover:text-red-700 p-1" title="Excluir Card">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Laura Card -->
+                <div class="gallery-item laura bg-white rounded-2xl overflow-hidden shadow-sm border border-brand-pinkLight group relative">
+                    <div class="image-wrapper relative aspect-[4/3] overflow-hidden">
+                        <img id="img-gal-laura"
+                             src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=600&q=80" 
+                             alt="Laura 15 Anos" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x450/EBDDE8/835493?text=Laura+XV'">
+                        
+                        <div class="image-overlay-controls absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-4">
+                            <span class="text-white text-xs font-bold mb-2">Trocar Imagem</span>
+                            <div class="flex gap-2">
+                                <button onclick="changeImageUrl('img-gal-laura')" class="px-2.5 py-1.5 bg-brand-accent text-white text-xs rounded">URL</button>
+                                <button onclick="triggerFileInput('img-gal-laura')" class="px-2.5 py-1.5 bg-white text-brand-dark text-xs rounded">Upload</button>
+                            </div>
+                        </div>
+
+                        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                            <span class="text-white text-xs uppercase tracking-widest bg-brand-accent/80 px-3 py-1 rounded-full pointer-events-auto editable-text" data-key="gal-laura-tag">Vestido Menta & Valsa</span>
+                        </div>
+                    </div>
+                    <div class="p-4 text-center relative">
+                        <h3 class="serif-title text-xl font-bold text-brand-dark editable-text" data-key="gal-laura-title">LAURA XV ANOS</h3>
+                        <p class="text-xs text-gray-500 mt-1 editable-text" data-key="gal-laura-desc">Condução de protocolo, homenagens e buquê</p>
+                        <button onclick="removeGalleryCard(this)" class="admin-only hidden absolute top-2 right-2 text-xs text-red-500 hover:text-red-700 p-1" title="Excluir Card">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lara Card -->
+                <div class="gallery-item lara bg-white rounded-2xl overflow-hidden shadow-sm border border-brand-pinkLight group relative">
+                    <div class="image-wrapper relative aspect-[4/3] overflow-hidden">
+                        <img id="img-gal-lara"
+                             src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=600&q=80" 
+                             alt="Lara 15 Anos" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                             onerror="this.src='https://placehold.co/600x450/EBDDE8/835493?text=Lara+XV'">
+                        
+                        <div class="image-overlay-controls absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-4">
+                            <span class="text-white text-xs font-bold mb-2">Trocar Imagem</span>
+                            <div class="flex gap-2">
+                                <button onclick="changeImageUrl('img-gal-lara')" class="px-2.5 py-1.5 bg-brand-accent text-white text-xs rounded">URL</button>
+                                <button onclick="triggerFileInput('img-gal-lara')" class="px-2.5 py-1.5 bg-white text-brand-dark text-xs rounded">Upload</button>
+                            </div>
+                        </div>
+
+                        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                            <span class="text-white text-xs uppercase tracking-widest bg-brand-accent/80 px-3 py-1 rounded-full pointer-events-auto editable-text" data-key="gal-lara-tag">Vestido Dourado & Joias</span>
+                        </div>
+                    </div>
+                    <div class="p-4 text-center relative">
+                        <h3 class="serif-title text-xl font-bold text-brand-dark editable-text" data-key="gal-lara-title">LARA XV ANOS</h3>
+                        <p class="text-xs text-gray-500 mt-1 editable-text" data-key="gal-lara-desc">Entrada triunfal, anel de 15 anos e recepção</p>
+                        <button onclick="removeGalleryCard(this)" class="admin-only hidden absolute top-2 right-2 text-xs text-red-500 hover:text-red-700 p-1" title="Excluir Card">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE DEPOIMENTOS (NOVA E RECOMENDADA) -->
+    <section id="depoimentos" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs uppercase tracking-widest text-brand-accent font-semibold editable-text" data-key="dep-tag">Histórias Reais</span>
+                <h2 class="serif-title text-4xl sm:text-5xl font-bold text-brand-dark mt-2 mb-4 editable-text" data-key="dep-title">O que dizem as nossas famílias</h2>
+                <div class="w-16 h-0.5 bg-brand-accent mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="bg-brand-bg rounded-3xl p-6 border border-brand-pinkLight card-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="text-amber-400 text-sm mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-sm italic text-gray-700 leading-relaxed mb-6 editable-text" data-key="dep-1-text">
+                            "A Elaine e a Leila foram indispensáveis na festa da minha filha Victória. Tudo fluiu perfeitamente e conseguimos aproveitar do começo ao fim sem nenhuma preocupação."
+                        </p>
+                    </div>
+                    <div>
+                        <strong class="block text-brand-dark font-bold text-sm editable-text" data-key="dep-1-author">Márcia - Mãe da Victória</strong>
+                        <span class="text-xs text-gray-500 editable-text" data-key="dep-1-event">Festa de 15 Anos</span>
+                    </div>
+                </div>
+
+                <div class="bg-brand-bg rounded-3xl p-6 border border-brand-pinkLight card-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="text-amber-400 text-sm mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-sm italic text-gray-700 leading-relaxed mb-6 editable-text" data-key="dep-2-text">
+                            "Equipe carinhosa, atenciosa e extremamente organizada! A valsa foi emocionante e a recepção foi um sucesso total. Recomendo de olhos fechados."
+                        </p>
+                    </div>
+                    <div>
+                        <strong class="block text-brand-dark font-bold text-sm editable-text" data-key="dep-2-author">Claudia & Ricardo</strong>
+                        <span class="text-xs text-gray-500 editable-text" data-key="dep-2-event">Pais da Laura</span>
+                    </div>
+                </div>
+
+                <div class="bg-brand-bg rounded-3xl p-6 border border-brand-pinkLight card-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="text-amber-400 text-sm mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-sm italic text-gray-700 leading-relaxed mb-6 editable-text" data-key="dep-3-text">
+                            "Saber que a equipe já estava no salão 3 horas antes nos deu uma paz imensa. O cuidado nos detalhes fez toda a diferença."
+                        </p>
+                    </div>
+                    <div>
+                        <strong class="block text-brand-dark font-bold text-sm editable-text" data-key="dep-3-author">Lara & Família</strong>
+                        <span class="text-xs text-gray-500 editable-text" data-key="dep-3-event">Debutante 15 Anos</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 7: PACOTES E VALORES -->
+    <section id="pacotes" class="py-20 bg-brand-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs uppercase tracking-widest text-brand-accent font-semibold editable-text" data-key="pac-tag">Investimento na sua tranquilidade</span>
+                <h2 class="serif-title text-4xl sm:text-5xl font-bold text-brand-dark mt-1 mb-3 editable-text" data-key="pac-title">Nossos Pacotes</h2>
+                <p class="serif-title text-xl text-brand-accent italic editable-text" data-key="pac-slogan">
+                    "Nós cuidamos de cada detalhe, você vive cada momento."
+                </p>
+            </div>
+
+            <!-- Cards dos Pacotes -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- PACOTE 1 -->
+                <div class="bg-white rounded-3xl p-8 border-2 border-brand-pinkLight flex flex-col justify-between hover:shadow-xl transition-all relative">
+                    <div>
+                        <div class="flex items-center space-x-2 text-brand-accent mb-4">
+                            <i class="fa-solid fa-gem text-xl"></i>
+                            <span class="serif-title text-2xl font-bold editable-text" data-key="p1-name">Pacote 1</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-brand-dark mb-6 editable-text" data-key="p1-sub">Cerimonial do Dia</h3>
+
+                        <ul class="space-y-4 text-sm text-gray-700 mb-8">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-circle-check text-brand-accent mt-1 mr-3 flex-shrink-0"></i>
+                                <span class="editable-text" data-key="p1-item1">Reunião de alinhamento e visita técnica ao espaço de festas;</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-circle-check text-brand-accent mt-1 mr-3 flex-shrink-0"></i>
+                                <span class="editable-text" data-key="p1-item2">Cronograma e organização minuciosa das entradas;</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-circle-check text-brand-accent mt-1 mr-3 flex-shrink-0"></i>
+                                <span class="editable-text" data-key="p1-item3">Acompanhamento e coordenação dos fornecedores no local;</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-circle-check text-brand-accent mt-1 mr-3 flex-shrink-0"></i>
+                                <span class="editable-text" data-key="p1-item4">Equipe de cerimonial com chegada com 3h de antecedência.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <button onclick="openWhatsAppModal('Interesse no Pacote 1 (Cerimonial do Dia)')" class="w-full text-center py-3.5 rounded-full bg-brand-bg text-brand-dark font-semibold border border-brand-pinkLight hover:bg-brand-accent hover:text-white transition-all shadow-sm cursor-pointer">
+                            Consultar Pacote 1
+                        </button>
+                    </div>
+                </div>
+
+                <!-- PACOTE 2 (Mais Escolhido) -->
+                <div class="bg-white rounded-3xl p-8 border-2 border-brand-accent shadow-lg flex flex-col justify-between relative transform lg:-translate-y-2">
+                    <span class="absolute -top-4 right-8 bg-brand-accent text-white text-xs uppercase tracking-widest font-bold px-4 py-1.5 rounded-full shadow-md editable-text" data-key="p2-badge">
+                        Recomendado
+                    </span>
+
+                    <div>
+                        <div class="flex items-center space-x-2 text-brand-accent mb-4">
+                            <i class="fa-solid fa-gem text-xl"></i>
+                            <i class="fa-solid fa-gem text-xl"></i>
+                            <span class="serif-title text-2xl font-bold editable-text" data-key="p2-name">Pacote 2</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-brand-dark mb-6 editable-text" data-key="p2-sub">Cerimonial Completo + VIP</h3>
+
+                        <ul class="space-y-4 text-sm text-gray-700 mb-8">
+                            <li class="flex items-start font-medium text-brand-dark">
+                                <i class="fa-solid fa-circle-check text-brand-accent mt-1 mr-3 flex-shrink-0"></i>
+                                <span class="editable-text" data-key="p2-item1">Tudo o que está incluso no 'Pacote 1';</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-circle-check text-brand-accent mt-1 mr-3 flex-shrink-0"></i>
+                                <span class="editable-text" data-key="p2-item2">Gestão de WhatsApp para confirmação de presença (RSVP);</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-circle-check text-brand-accent mt-1 mr-3 flex-shrink-0"></i>
+                                <span class="editable-text" data-key="p2-item3">Ensaio antecipado da valsa principal no local do evento;</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-circle-check text-brand-accent mt-1 mr-3 flex-shrink-0"></i>
+                                <span class="editable-text" data-key="p2-item4">1 cerimonialista exclusiva para suporte direto aos anfitriões/debutante.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <button onclick="openWhatsAppModal('Interesse no Pacote 2 (Completo + VIP)')" class="w-full text-center py-3.5 rounded-full bg-brand-accent text-white font-semibold hover:bg-brand-accentHover transition-all shadow-md cursor-pointer">
+                            Escolher Pacote 2
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ORÇAMENTO SOB MEDIDA -->
+                <div class="bg-white rounded-3xl p-8 border-2 border-brand-pinkLight flex flex-col justify-between hover:shadow-xl transition-all">
+                    <div>
+                        <div class="flex items-center space-x-2 text-brand-accent mb-4">
+                            <i class="fa-solid fa-calculator text-xl"></i>
+                            <span class="serif-title text-2xl font-bold editable-text" data-key="p3-name">Orçamento</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-brand-dark mb-6 editable-text" data-key="p3-sub">Personalizado</h3>
+
+                        <ul class="space-y-4 text-sm text-gray-700 mb-8">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-brand-accent mt-1 mr-3 flex-shrink-0"></i>
+                                <span class="editable-text" data-key="p3-item1">Valores calculados de acordo com o nº de convidados;</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-brand-accent mt-1 mr-3 flex-shrink-0"></i>
+                                <span class="editable-text" data-key="p3-item2">Ideal para Festas de 15 anos, Aniversários, Confraternizações e Eventos Sociais;</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check text-brand-accent mt-1 mr-3 flex-shrink-0"></i>
+                                <span class="editable-text" data-key="p3-item3">Atendimento via WhatsApp e Instagram direto com a equipe.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <button onclick="openWhatsAppModal('Orçamento Personalizado Sob Medida')" class="w-full text-center py-3.5 rounded-full bg-brand-bg text-brand-dark font-semibold border border-brand-pinkLight hover:bg-brand-accent hover:text-white transition-all shadow-sm cursor-pointer">
+                            Fale com as Cerimonialistas
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- VALOR DE ENTRADA DESTACADO -->
+            <div class="mt-12 text-center">
+                <div class="inline-block bg-brand-accent text-white font-semibold text-base sm:text-lg px-8 py-4 rounded-full shadow-lg">
+                    Pacotes a partir de <span class="text-2xl font-bold underline underline-offset-4 editable-text" data-key="valor-minimo" id="text-valor-minimo">R$ 850,00</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SLIDE 10: CONTATO E ENCERRAMENTO -->
+    <section id="contato" class="py-20 bg-white border-t border-brand-pinkLight">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-brand-bg rounded-3xl p-8 sm:p-12 shadow-md border border-brand-pinkLight">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Mosaico com Fotos das Festas -->
+                    <div class="lg:col-span-5 grid grid-cols-3 gap-3">
+                        <div class="image-wrapper rounded-xl overflow-hidden aspect-square relative group shadow-sm">
+                            <img id="img-ct-1" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=300&q=80" alt="Bolo e Decoração" class="w-full h-full object-cover">
+                            <div class="image-overlay-controls absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-2">
+                                <button onclick="changeImageUrl('img-ct-1')" class="px-2 py-1 bg-brand-accent text-white text-[10px] rounded mb-1">URL</button>
+                                <button onclick="triggerFileInput('img-ct-1')" class="px-2 py-1 bg-white text-brand-dark text-[10px] rounded">File</button>
+                            </div>
+                        </div>
+
+                        <div class="image-wrapper rounded-xl overflow-hidden aspect-square relative group shadow-sm">
+                            <img id="img-ct-2" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=300&q=80" alt="Fotografia" class="w-full h-full object-cover">
+                            <div class="image-overlay-controls absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-2">
+                                <button onclick="changeImageUrl('img-ct-2')" class="px-2 py-1 bg-brand-accent text-white text-[10px] rounded mb-1">URL</button>
+                                <button onclick="triggerFileInput('img-ct-2')" class="px-2 py-1 bg-white text-brand-dark text-[10px] rounded">File</button>
+                            </div>
+                        </div>
+
+                        <div class="image-wrapper rounded-xl overflow-hidden aspect-square relative group shadow-sm">
+                            <img id="img-ct-3" src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=300&q=80" alt="Doces" class="w-full h-full object-cover">
+                            <div class="image-overlay-controls absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-2">
+                                <button onclick="changeImageUrl('img-ct-3')" class="px-2 py-1 bg-brand-accent text-white text-[10px] rounded mb-1">URL</button>
+                                <button onclick="triggerFileInput('img-ct-3')" class="px-2 py-1 bg-white text-brand-dark text-[10px] rounded">File</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chamada para Ação Final -->
+                    <div class="lg:col-span-7">
+                        <h2 class="serif-title text-4xl sm:text-5xl font-bold text-brand-dark mb-4 leading-tight editable-text" data-key="cta-title">
+                            Vamos criar algo incrível juntos?
+                        </h2>
+                        
+                        <p class="text-lg text-brand-accent font-medium mb-8 editable-text" data-key="cta-sub">
+                            Nós cuidamos de cada detalhe, você vive cada momento.
+                        </p>
+
+                        <!-- Dados de Contato Individuais e Botões Exclusivos para Cada Número -->
+                        <div class="space-y-4 mb-8">
+                            
+                            <!-- WhatsApp Elaine -->
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-2xl border border-brand-pinkLight bg-white gap-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center flex-shrink-0 text-xl">
+                                        <i class="fa-brands fa-whatsapp"></i>
+                                    </div>
+                                    <div>
+                                        <span class="block text-xs uppercase font-bold text-gray-500">Cerimonialista</span>
+                                        <span class="font-bold text-brand-dark text-lg editable-text" data-key="phone-elaine">(19) 99941-1564 • Elaine</span>
+                                    </div>
+                                </div>
+                                <a href="https://wa.me/5519999411564?text=Ol%C3%A1%20Elaine!%20Gostaria%20de%20falar%20sobre%20o%20cerimonial%20da%20minha%20festa." 
+                                   target="_blank" 
+                                   class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-green-600 text-white text-sm font-semibold hover:bg-green-700 transition-all shadow-sm">
+                                    <i class="fa-brands fa-whatsapp mr-1.5"></i> Falar com Elaine
+                                </a>
+                            </div>
+
+                            <!-- WhatsApp Leila -->
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-2xl border border-brand-pinkLight bg-white gap-3">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center flex-shrink-0 text-xl">
+                                        <i class="fa-brands fa-whatsapp"></i>
+                                    </div>
+                                    <div>
+                                        <span class="block text-xs uppercase font-bold text-gray-500">Cerimonialista</span>
+                                        <span class="font-bold text-brand-dark text-lg editable-text" data-key="phone-leila">(19) 99610-3704 • Leila</span>
+                                    </div>
+                                </div>
+                                <a href="https://wa.me/551996103704?text=Ol%C3%A1%20Leila!%20Gostaria%20de%20falar%20sobre%20o%20cerimonial%20da%20minha%20festa." 
+                                   target="_blank" 
+                                   class="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-green-600 text-white text-sm font-semibold hover:bg-green-700 transition-all shadow-sm">
+                                    <i class="fa-brands fa-whatsapp mr-1.5"></i> Falar com Leila
+                                </a>
+                            </div>
+
+                            <!-- Instagram -->
+                            <a href="https://instagram.com/descerimonial" target="_blank" class="flex items-center space-x-4 p-3 rounded-xl hover:bg-white transition-colors group">
+                                <div class="w-10 h-10 rounded-full bg-brand-accent text-white flex items-center justify-center flex-shrink-0 text-lg group-hover:scale-110 transition-transform">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </div>
+                                <div>
+                                    <span class="block text-xs uppercase tracking-wider text-gray-500">Instagram Oficial</span>
+                                    <span class="font-bold text-brand-dark text-base editable-text" data-key="insta-handle">@descerimonial</span>
+                                </div>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HIDDEN FILE INPUT PARA UPLOAD DE FOTOS -->
+    <input type="file" id="global-file-input" accept="image/*" class="hidden" onchange="handleFileSelected(event)">
+
+    <!-- MODAL SELETOR DE WHATSAPP -->
+    <div id="whatsapp-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl relative animate-in fade-in zoom-in duration-200">
+            <button onclick="closeWhatsAppModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 flex items-center justify-center text-sm font-bold">✕</button>
+            
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </div>
+                <h3 class="serif-title text-2xl font-bold text-brand-dark">Com quem deseja falar?</h3>
+                <p class="text-xs text-gray-500 mt-1" id="whatsapp-modal-context">Escolha a cerimonialista para iniciar a conversa:</p>
+            </div>
+
+            <div class="space-y-3">
+                <a id="btn-wa-elaine" href="#" target="_blank" class="flex items-center justify-between p-4 rounded-2xl border-2 border-green-500 bg-green-50/50 hover:bg-green-100/60 transition-all group">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-brands fa-whatsapp text-2xl text-green-600"></i>
+                        <div class="text-left">
+                            <strong class="block text-brand-dark text-base">Elaine Duarte</strong>
+                            <span class="text-xs text-gray-500">(19) 99941-1564</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-green-600 text-sm group-hover:translate-x-1 transition-transform"></i>
+                </a>
+
+                <a id="btn-wa-leila" href="#" target="_blank" class="flex items-center justify-between p-4 rounded-2xl border-2 border-green-500 bg-green-50/50 hover:bg-green-100/60 transition-all group">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-brands fa-whatsapp text-2xl text-green-600"></i>
+                        <div class="text-left">
+                            <strong class="block text-brand-dark text-base">Leila Souza</strong>
+                            <span class="text-xs text-gray-500">(19) 99610-3704</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-green-600 text-sm group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+
+            <p class="text-center text-[11px] text-gray-400 mt-5">Atendimento rápido e direto no WhatsApp oficial.</p>
+        </div>
+    </div>
+
+    <!-- MODAL DE LOGIN ADMIN -->
+    <div id="login-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-sm w-full shadow-2xl relative">
+            <button onclick="closeLoginModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 flex items-center justify-center text-sm font-bold">✕</button>
+            
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-brand-pinkLight text-brand-accent rounded-full flex items-center justify-center mx-auto mb-2 text-xl">
+                    <i class="fa-solid fa-user-lock"></i>
+                </div>
+                <h3 class="serif-title text-2xl font-bold text-brand-dark">Acesso Restrito</h3>
+                <p class="text-xs text-gray-500">Entre com seu usuário e senha autorizados para alterar o conteúdo do site</p>
+            </div>
+
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Usuário</label>
+                    <input type="text" id="admin-user" placeholder="Seu usuário..." required 
+                           class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-accent text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Senha de Acesso</label>
+                    <input type="password" id="admin-password" placeholder="Sua senha..." required 
+                           class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-accent text-sm">
+                </div>
+                <div id="login-error" class="hidden text-xs text-red-500 text-center font-medium">
+                    Usuário ou senha incorretos!
+                </div>
+                <button type="submit" class="w-full py-3 rounded-xl bg-brand-accent text-white font-bold text-sm hover:bg-brand-accentHover transition-colors shadow-md">
+                    Entrar no Modo Edição
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- RODAPÉ -->
+    <footer class="bg-brand-dark text-white py-8 border-t border-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-gray-400 space-y-2">
+            <p class="serif-title text-xl text-white font-bold tracking-widest editable-text" data-key="footer-brand">DUARTE & SOUZA CERIMONIAL</p>
+            <p class="editable-text" data-key="footer-slogan">"Nós cuidamos de cada detalhe, você vive cada momento."</p>
+            <div class="pt-4 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between text-gray-500 gap-2">
+                <p>&copy; 2026 Duarte & Souza Cerimonial. Todos os direitos reservados.</p>
+                <button onclick="openLoginModal()" class="text-gray-400 hover:text-white transition-colors text-[11px] underline">
+                    <i class="fa-solid fa-lock text-[10px] mr-1"></i> Acesso Restrito
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT DE INTERATIVIDADE E EDIÇÃO -->
+    <script>
+        let currentTargetImgId = null;
+        let isAdminLoggedIn = false;
+
+        // Credenciais autorizadas
+        const ADMIN_USERS = [
+            { user: 'elaine2212', pass: 'amocerimonial' },
+            { user: 'laura0812', pass: 'amocerimonial' },
+            { user: 'leila2212', pass: 'amocerimonial' }
+        ];
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSavedContent();
+        });
+
+        // Toggle do Menu Mobile
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        document.getElementById('mobile-menu-btn')?.addEventListener('click', toggleMenu);
+
+        // MODAL SELETOR DE WHATSAPP
+        function openWhatsAppModal(context) {
+            const modal = document.getElementById('whatsapp-modal');
+            const contextText = document.getElementById('whatsapp-modal-context');
+            
+            if (context) {
+                contextText.innerText = `Assunto: ${context}. Escolha quem prefere chamar:`;
+            }
+
+            const encodedContext = encodeURIComponent(`Olá! Gostaria de falar sobre: ${context || 'Atendimento Cerimonial'}`);
+            
+            document.getElementById('btn-wa-elaine').href = `https://wa.me/5519999411564?text=${encodedContext}`;
+            document.getElementById('btn-wa-leila').href = `https://wa.me/551996103704?text=${encodedContext}`;
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeWhatsAppModal() {
+            document.getElementById('whatsapp-modal').classList.add('hidden');
+        }
+
+        // AUTENTICAÇÃO DO MODO EDINHO/ADMIN
+        function openLoginModal() {
+            document.getElementById('login-modal').classList.remove('hidden');
+        }
+
+        function closeLoginModal() {
+            document.getElementById('login-modal').classList.add('hidden');
+            document.getElementById('login-error').classList.add('hidden');
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const userInput = document.getElementById('admin-user').value.trim();
+            const passInput = document.getElementById('admin-password').value.trim();
+
+            const isValid = ADMIN_USERS.some(u => u.user === userInput && u.pass === passInput);
+
+            if (isValid) {
+                closeLoginModal();
+                enableAdminMode();
+            } else {
+                document.getElementById('login-error').classList.remove('hidden');
+            }
+        }
+
+        function enableAdminMode() {
+            isAdminLoggedIn = true;
+            document.body.classList.add('admin-active');
+            document.getElementById('admin-top-bar').classList.remove('hidden');
+            
+            // Ativa atributo contenteditable em todos os textos
+            document.querySelectorAll('.editable-text').forEach(el => {
+                el.setAttribute('contenteditable', 'true');
+            });
+
+            // Exibe botões apenas de admin
+            document.querySelectorAll('.admin-only').forEach(el => {
+                el.classList.remove('hidden');
+                el.classList.add('flex');
+            });
+
+            // Oculta botão de login na navegação
+            const loginNavBtn = document.getElementById('nav-login-btn');
+            if(loginNavBtn) loginNavBtn.style.display = 'none';
+        }
+
+        function exitAdminMode() {
+            isAdminLoggedIn = false;
+            document.body.classList.remove('admin-active');
+            document.getElementById('admin-top-bar').classList.add('hidden');
+
+            document.querySelectorAll('.editable-text').forEach(el => {
+                el.removeAttribute('contenteditable');
+            });
+
+            document.querySelectorAll('.admin-only').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('flex');
+            });
+
+            const loginNavBtn = document.getElementById('nav-login-btn');
+            if(loginNavBtn) loginNavBtn.style.display = 'inline-block';
+        }
+
+        // EDINHO DE IMAGENS NA TELA (Bloqueado apenas para Admin)
+        function changeImageUrl(imgId) {
+            if (!isAdminLoggedIn) {
+                alert('Você precisa estar logado na Área Admin para alterar imagens.');
+                openLoginModal();
+                return;
+            }
+
+            const imgEl = document.getElementById(imgId);
+            if (!imgEl) return;
+
+            const newUrl = prompt('Cole o link da nova imagem (URL web):', imgEl.src);
+            if (newUrl && newUrl.trim() !== '') {
+                imgEl.src = newUrl.trim();
+                saveSingleImageData(imgId, newUrl.trim());
+            }
+        }
+
+        function triggerFileInput(imgId) {
+            if (!isAdminLoggedIn) {
+                alert('Você precisa estar logado na Área Admin para enviar imagens.');
+                openLoginModal();
+                return;
+            }
+            currentTargetImgId = imgId;
+            document.getElementById('global-file-input').click();
+        }
+
+        function handleFileSelected(e) {
+            if (!isAdminLoggedIn) return;
+            const file = e.target.files[0];
+            if (!file || !currentTargetImgId) return;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const imgEl = document.getElementById(currentTargetImgId);
+                if (imgEl) {
+                    imgEl.src = event.target.result;
+                    saveSingleImageData(currentTargetImgId, event.target.result);
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // ADICIONAR E REMOVER CARDS DA GALERIA
+        function promptAddNewPhotoCard() {
+            if (!isAdminLoggedIn) {
+                alert('Apenas usuários administradores podem adicionar novas fotos.');
+                openLoginModal();
+                return;
+            }
+
+            const title = prompt('Título da Foto/Evento:', 'Nova Celebração');
+            if (!title) return;
+
+            const desc = prompt('Descrição breve:', 'Cerimonial D&S');
+            const url = prompt('Link da foto (URL) ou clique em OK para usar imagem padrão:', 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80');
+
+            const container = document.getElementById('gallery-container');
+            const newId = 'img-gal-custom-' + Date.now();
+            
+            const newCard = document.createElement('div');
+            newCard.className = 'gallery-item all bg-white rounded-2xl overflow-hidden shadow-sm border border-brand-pinkLight group relative';
+            newCard.innerHTML = `
+                <div class="image-wrapper relative aspect-[4/3] overflow-hidden">
+                    <img id="${newId}" src="${url || 'https://placehold.co/600x450/EBDDE8/835493?text=Nova+Foto'}" alt="${title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="image-overlay-controls absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-4">
+                        <span class="text-white text-xs font-bold mb-2">Trocar Imagem</span>
+                        <div class="flex gap-2">
+                            <button onclick="changeImageUrl('${newId}')" class="px-2.5 py-1.5 bg-brand-accent text-white text-xs rounded">URL</button>
+                            <button onclick="triggerFileInput('${newId}')" class="px-2.5 py-1.5 bg-white text-brand-dark text-xs rounded">Upload</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 text-center relative">
+                    <h3 class="serif-title text-xl font-bold text-brand-dark editable-text">${title.toUpperCase()}</h3>
+                    <p class="text-xs text-gray-500 mt-1 editable-text">${desc}</p>
+                    <button onclick="removeGalleryCard(this)" class="admin-only flex absolute top-2 right-2 text-xs text-red-500 hover:text-red-700 p-1" title="Excluir Card">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `;
+
+            container.prepend(newCard);
+            if (isAdminLoggedIn) {
+                newCard.querySelectorAll('.editable-text').forEach(el => el.setAttribute('contenteditable', 'true'));
+            }
+        }
+
+        function removeGalleryCard(btn) {
+            if (!isAdminLoggedIn) return;
+            if (confirm('Deseja realmente remover esta foto da galeria?')) {
+                const card = btn.closest('.gallery-item');
+                if (card) card.remove();
+            }
+        }
+
+        // SALVAMENTO EM LOCAL STORAGE
+        function saveAllChanges() {
+            const savedTexts = {};
+            document.querySelectorAll('.editable-text[data-key]').forEach(el => {
+                savedTexts[el.getAttribute('data-key')] = el.innerText;
+            });
+
+            const savedImages = {};
+            document.querySelectorAll('img[id]').forEach(img => {
+                savedImages[img.id] = img.src;
+            });
+
+            localStorage.setItem('ds_cerimonial_texts', JSON.stringify(savedTexts));
+            localStorage.setItem('ds_cerimonial_images', JSON.stringify(savedImages));
+
+            alert('Todas as alterações de texto e imagem foram salvas com sucesso!');
+        }
+
+        function saveSingleImageData(imgId, src) {
+            const savedImages = JSON.parse(localStorage.getItem('ds_cerimonial_images') || '{}');
+            savedImages[imgId] = src;
+            localStorage.setItem('ds_cerimonial_images', JSON.stringify(savedImages));
+        }
+
+        function loadSavedContent() {
+            const savedTexts = JSON.parse(localStorage.getItem('ds_cerimonial_texts') || '{}');
+            Object.keys(savedTexts).forEach(key => {
+                const el = document.querySelector(`.editable-text[data-key="${key}"]`);
+                if (el) el.innerText = savedTexts[key];
+            });
+
+            const savedImages = JSON.parse(localStorage.getItem('ds_cerimonial_images') || '{}');
+            Object.keys(savedImages).forEach(imgId => {
+                const img = document.getElementById(imgId);
+                if (img) img.src = savedImages[imgId];
+            });
+        }
+
+        function resetToDefaults() {
+            if (confirm('Deseja restaurar todo o conteúdo e fotos originais do site?')) {
+                localStorage.removeItem('ds_cerimonial_texts');
+                localStorage.removeItem('ds_cerimonial_images');
+                location.reload();
+            }
+        }
+
+        // Filtro de Galeria do Portfólio
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.gallery-filter-btn');
+
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-filter') === category) {
+                    btn.classList.remove('bg-white', 'text-brand-dark', 'border');
+                    btn.classList.add('bg-brand-accent', 'text-white');
+                } else {
+                    btn.classList.remove('bg-brand-accent', 'text-white');
+                    btn.classList.add('bg-white', 'text-brand-dark', 'border');
+                }
+            });
+
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
