@@ -139,7 +139,7 @@
             <a href="#" class="flex items-center gap-4 group py-1 pr-6 md:border-r border-brand-pinkLight/70">
                 <div class="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden bg-brand-pastel flex items-center justify-center border border-brand-pinkLight shadow-md group-hover:scale-105 transition-transform flex-shrink-0">
                     <img id="headerLogoImg" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=200&q=80" alt="Logo Duarte & Souza Cerimonial" class="w-full h-full object-cover">
-                    <button onclick="changeImageUrl('headerLogoImg')" class="admin-only hidden absolute inset-0 bg-black/60 text-white text-[9px] font-bold uppercase tracking-wider flex items-center justify-center">
+                    <button onclick="event.preventDefault(); event.stopPropagation(); triggerDeviceUpload('headerLogoImg')" class="admin-only hidden absolute inset-0 bg-black/60 text-white text-[9px] font-bold uppercase tracking-wider flex items-center justify-center">
                         Trocar Logo
                     </button>
                 </div>
