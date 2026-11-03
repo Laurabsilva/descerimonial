@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duarte & Souza Cerimonial | Eventos, 15 Anos e Casamentos</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Supabase (banco de dados) -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
+
+    <!-- Configuração de Cores & Design Tokens de Luxo -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#F6F0F5',
+                            card: '#FAF5FA',
+                            pastel: '#EFE5EE',
+                            pinkLight: '#E5D3E3',
+                            accent: '#7D4F8D',
+                            accentDark: '#5E386C',
+                            accentLight: '#9D6EB0',
+                            dark: '#2A1F2D',
+                            gold: '#D4AF37',
+                            goldSoft: '#F4E8C1'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        display: ['Cormorant Garamond', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(180deg, #F9F5F9 0%, #F3EAF2 100%);
+            color: #2A1F2D;
+        }
+        .font-serif-title {
+            font-family: 'Playfair Display', serif;
+        }
+        .font-display {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .glass-header {
+            background: rgba(249, 245, 249, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .luxury-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 245, 250, 0.8) 100%);
+            border: 1px solid rgba(229, 211, 227, 0.8);
+            box-shadow: 0 20px 40px -15px rgba(125, 79, 141, 0.08);
+            backdrop-filter: blur(10px);
+        }
+        .luxury-card-hover {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .luxury-card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 50px -12px rgba(125, 79, 141, 0.18);
+            border-color: rgba(125, 79, 141, 0.5);
+        }
+        [contenteditable="true"] {
+            outline: 2px dashed #7D4F8D !important;
+            outline-offset: 4px;
+            border-radius: 8px;
+            background-color: rgba(229, 211, 227, 0.4);
+            padding: 4px 8px;
+        }
+        .portfolio-item {
+            transition: all 0.4s ease;
+        }
+        /* Painel de novo card */
+        .tag-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 600;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .tag-chip.selected {
+            box-shadow: 0 0 0 3px rgba(125, 79, 141, 0.35);
+            transform: scale(1.05);
+        }
+        .swatch {
+            width: 28px;
+            height: 28px;
+            border-radius: 9999px;
+            border: 2px solid white;
+            box-shadow: 0 0 0 1px #E5D3E3;
+            cursor: pointer;
+        }
+        .swatch.selected {
+            box-shadow: 0 0 0 3px #7D4F8D;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-brand-pinkLight selection:text-brand-dark">
+
+    <!-- BARRA SUPERIOR COM SLOGAN DA MARCA -->
+    <div class="bg-gradient-to-r from-brand-accentDark via-brand-accent to-brand-accentDark text-white py-2.5 px-4 text-center text-xs sm:text-sm font-medium tracking-widest uppercase shadow-sm">
+        <i class="fa-solid fa-sparkles text-brand-goldSoft mr-2"></i>
+        <span>Você aproveita cada momento. Nós cuidamos de cada detalhe.</span>
+        <i class="fa-solid fa-sparkles text-brand-goldSoft ml-2"></i>
+    </div>
+
+    <!-- CABEÇALHO / HEADER -->
+    <header class="sticky top-0 z-40 glass-header border-b border-brand-pinkLight/60 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-5 flex items-center justify-between gap-6 min-h-[90px]">
+            
+            <!-- LOGO DA MARCA (Nome Mantido Intacto) -->
+            <a href="#" class="flex items-center gap-4 group py-1 pr-6 md:border-r border-brand-pinkLight/70">
+                <div class="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden bg-brand-pastel flex items-center justify-center border border-brand-pinkLight shadow-md group-hover:scale-105 transition-transform flex-shrink-0">
+                    <img id="headerLogoImg" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=200&q=80" alt="Logo Duarte & Souza Cerimonial" class="w-full h-full object-cover">
+                    <button onclick="changeImageUrl('headerLogoImg')" class="admin-only hidden absolute inset-0 bg-black/60 text-white text-[9px] font-bold uppercase tracking-wider flex items-center justify-center">
+                        Trocar Logo
+                    </button>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-display text-2xl sm:text-3xl font-semibold tracking-wide text-brand-dark group-hover:text-brand-accent transition-colors leading-tight">
+                        Duarte & Souza
+                    </span>
+                    <span class="text-[11px] tracking-[0.35em] uppercase text-brand-accent font-semibold mt-0.5">
+                        Cerimonial
+                    </span>
+                </div>
+            </a>
+
+            <!-- NAVEGAÇÃO -->
+            <nav class="hidden lg:flex items-center space-x-6 text-xs font-semibold uppercase tracking-widest text-brand-dark/80">
+                <a href="#quem-somos" class="hover:text-brand-accent transition-colors py-2">Quem Somos</a>
+                <a href="#fotos-eventos" class="hover:text-brand-accent transition-colors py-2">Eventos</a>
+                <a href="#servicos-detalhados" class="hover:text-brand-accent transition-colors py-2">Serviços</a>
+                <a href="#diferencial" class="hover:text-brand-accent transition-colors py-2">Diferencial</a>
+                <a href="#como-funciona" class="hover:text-brand-accent transition-colors py-2">Como Funciona</a>
+                <a href="#pacotes" class="hover:text-brand-accent transition-colors py-2">Pacotes</a>
+                <a href="#parceiros" class="hover:text-brand-accent transition-colors py-2">Parceiros</a>
+            </nav>
+
+            <!-- AÇÕES HEADER (WHATSAPP ELAINE + ADMIN) -->
+            <div class="flex items-center space-x-3 ml-auto md:ml-0">
+                <button onclick="openLoginModal()" id="adminNavBtn" class="text-xs bg-white hover:bg-brand-pastel text-brand-accent px-4 py-2.5 rounded-full transition-all flex items-center gap-2 border border-brand-pinkLight shadow-sm">
+                    <i class="fa-solid fa-user-lock"></i>
+                    <span id="adminNavStatus" class="font-medium hidden sm:inline">Área Admin</span>
+                </button>
+
+                <a href="https://wa.me/5519991598383?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20meu%20evento." target="_blank" title="Falar no WhatsApp" class="bg-emerald-600 hover:bg-emerald-700 text-white w-11 h-11 rounded-full flex items-center justify-center transition-all shadow-md hover:shadow-lg hover:scale-105 flex-shrink-0">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- INPUT DE ARQUIVO OCULTO PARA SELECIONAR FOTO DA GALERIA DO CELULAR OU COMPUTADOR -->
+    <input type="file" id="deviceImagePicker" accept="image/*" class="hidden" onchange="handleImageSelected(event)">
+
+    <!-- BARRA DE PAINEL ADMIN -->
+    <div id="adminToolbar" class="hidden bg-brand-dark text-white py-3 px-6 sticky top-[90px] z-30 shadow-2xl border-b border-brand-accent">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 text-xs tracking-wider">
+            <div class="flex items-center gap-3">
+                <span class="relative flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                </span>
+                <span>Modo de Edição Ativo: <strong id="loggedUserDisplay" class="text-brand-pinkLight uppercase"></strong></span>
+            </div>
+            <div class="flex items-center gap-4">
+                <button id="saveBtn" onclick="saveAllChangesToCloud()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider flex items-center gap-2 shadow-md transition-all">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Salvar Alterações
+                </button>
+                <button onclick="logoutAdmin()" class="bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-full text-xs transition-all">
+                    Sair
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <main class="flex-grow">
+        <!-- 1. HERO SECTION -->
+        <section class="py-16 lg:py-20 px-6 max-w-6xl mx-auto text-center space-y-8">
+            <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/80 border border-brand-pinkLight shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-brand-accent"></span>
+                <span class="text-xs uppercase tracking-widest font-semibold text-brand-accent">Cerimonial & Assessoria de Eventos</span>
+            </div>
+
+            <h1 class="font-display text-5xl sm:text-7xl font-semibold text-brand-dark leading-tight">
+                D&S Cerimonial
+            </h1>
+
+            <p class="text-base sm:text-lg text-brand-dark/80 font-light max-w-2xl mx-auto leading-relaxed edit-text" id="heroDesc">
+                Preparamos, organizamos e coordenamos com perfeição o seu evento para que você viva cada momento com máxima serenidade.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+                <a href="https://wa.me/5519991598383?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20meu%20evento." target="_blank" class="w-full sm:w-auto bg-brand-accent hover:bg-brand-accentDark text-white px-8 py-4 rounded-full font-semibold text-xs uppercase tracking-widest shadow-xl transition-all">
+                    Solicitar orçamento
+                </a>
+                <a href="#quem-somos" class="w-full sm:w-auto bg-white hover:bg-brand-pastel text-brand-dark px-8 py-4 rounded-full font-semibold text-xs uppercase tracking-widest border border-brand-pinkLight shadow-sm transition-all">
+                    Conhecer nossa história
+                </a>
+            </div>
+
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white mt-8 group">
+                <img id="heroImg" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80" alt="Cerimonial Elegante" class="w-full h-[400px] sm:h-[500px] object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end justify-center p-8">
+                    <p class="text-white font-serif-title text-xl sm:text-3xl italic tracking-wide">"Nós cuidamos de cada detalhe para você viver cada momento."</p>
+                </div>
+                <button onclick="triggerDeviceUpload('heroImg')" class="admin-only hidden absolute top-4 right-4 bg-white/90 text-brand-dark px-4 py-2 rounded-full text-xs font-semibold shadow-lg hover:bg-white transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-image"></i> Escolher da Galeria
+                </button>
+            </div>
+        </section>
+
+        <!-- 2. SEÇÃO QUEM SOMOS -->
+        <section id="quem-somos" class="py-20 bg-white/70 border-y border-brand-pinkLight/60">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+                    <span class="text-xs uppercase tracking-[0.3em] text-brand-accent font-semibold">Duarte & Souza</span>
+                    <h2 class="font-display text-4xl sm:text-5xl font-semibold text-brand-dark">Quem somos?</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                    <div class="luxury-card p-3 rounded-3xl relative">
+                        <img id="aboutImg1" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80" alt="Equipe Duarte e Souza" class="w-full h-72 object-cover rounded-2xl">
+                        <button onclick="triggerDeviceUpload('aboutImg1')" class="admin-only hidden absolute top-6 right-6 bg-white text-brand-dark px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 shadow-md">
+                            <i class="fa-solid fa-upload"></i> Galeria
+                        </button>
+                    </div>
+
+                    <div class="luxury-card p-3 rounded-3xl relative">
+                        <img id="aboutImg2" src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80" alt="Equipe em Ação" class="w-full h-72 object-cover rounded-2xl">
+                        <button onclick="triggerDeviceUpload('aboutImg2')" class="admin-only hidden absolute top-6 right-6 bg-white text-brand-dark px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1.5 shadow-md">
+                            <i class="fa-solid fa-upload"></i> Galeria
+                        </button>
+                    </div>
+                </div>
+
+                <div class="luxury-card p-8 rounded-3xl text-center max-w-4xl mx-auto">
+                    <p class="text-base sm:text-lg text-brand-dark/80 font-light leading-relaxed">
+                        A <strong>D&S Cerimonial & Assessoria</strong> é formada por uma equipe apaixonada por realizar eventos inesquecíveis. Oferecemos suporte completo e coordenação atenta em <strong>Festas de 15 Anos</strong>, <strong>Casamentos</strong> e <strong>Aniversários</strong>, garantindo tranquilidade total em cada etapa.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. FOTOS EVENTOS REALIZADOS (PORTFÓLIO LOGO APÓS QUEM SOMOS) -->
+        <section id="fotos-eventos" class="py-20 max-w-6xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-10 space-y-2">
+                <span class="text-xs uppercase tracking-[0.3em] text-brand-accent font-semibold">Galeria de Destaques</span>
+                <h2 class="font-display text-4xl sm:text-5xl font-semibold text-brand-dark">Fotos Eventos Realizados</h2>
+                <p class="text-xs text-brand-dark/70">Confira alguns dos momentos especiais assessorados por nossa equipe.</p>
+            </div>
+
+            <!-- FILTROS POR ETIQUETAS (gerados automaticamente a partir das tags) + BOTÃO + (só admin) -->
+            <div class="flex flex-wrap justify-center items-center gap-3 mb-10">
+                <div id="portfolioFilters" class="flex flex-wrap justify-center gap-3"></div>
+                <button id="addCardBtn" onclick="openCardModal()" title="Adicionar novo card" class="admin-only hidden w-10 h-10 rounded-full bg-brand-accent hover:bg-brand-accentDark text-white shadow-lg hover:scale-110 transition-all items-center justify-center">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
+
+            <!-- GRID DE EVENTOS REALIZADOS (cards gerados pelo script) -->
+            <div id="portfolioGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+
+        <!-- 4. DETALHAMENTO DOS NOSSOS SERVIÇOS -->
+        <section id="servicos-detalhados" class="py-20 bg-white/70 border-y border-brand-pinkLight/60">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+                    <span class="text-xs uppercase tracking-[0.3em] text-brand-accent font-semibold">Escopo Completo</span>
+                    <h2 class="font-display text-4xl sm:text-5xl font-semibold text-brand-dark">Nossos Serviços</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- FESTA DE 15 ANOS -->
+                    <div class="luxury-card p-8 rounded-3xl space-y-4 border-t-4 border-t-brand-accent">
+                        <div class="flex items-center gap-3 border-b border-brand-pinkLight pb-4">
+                            <i class="fa-solid fa-crown text-brand-accent text-2xl"></i>
+                            <h3 class="font-serif-title text-2xl font-semibold text-brand-dark">Festa de 15 Anos</h3>
+                        </div>
+                        <ul class="text-xs text-brand-dark/80 space-y-2.5 leading-relaxed">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-accent mt-0.5"></i> Organização do cronograma completo;</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-accent mt-0.5"></i> Coordenação integral da cerimônia;</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-accent mt-0.5"></i> Entrada da debutante e familiares;</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-accent mt-0.5"></i> Homenagens e momentos especiais;</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-accent mt-0.5"></i> Alinhamento com DJ, foto, buffet e equipe;</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-accent mt-0.5"></i> Recepção e orientação dos convidados;</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-accent mt-0.5"></i> Acompanhamento constante da debutante;</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-accent mt-0.5"></i> Presença contínua até o encerramento.</li>
+                        </ul>
+                    </div>
+
+                    <!-- CASAMENTOS -->
+                    <div class="luxury-card p-8 rounded-3xl space-y-4 border-t-4 border-t-brand-gold">
+                        <div class="flex items-center gap-3 border-b border-brand-pinkLight pb-4">
+                            <i class="fa-solid fa-ring text-brand-gold text-2xl"></i>
+                            <h3 class="font-serif-title text-2xl font-semibold text-brand-dark">Casamentos</h3>
+                        </div>
+                        <ul class="text-xs text-brand-dark/80 space-y-2.5 leading-relaxed">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-gold mt-0.5"></i> Coordenação completa da cerimônia;</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-gold mt-0.5"></i> Organização e entrada do cortejo;</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-gold mt-0.5"></i> Recepção e acolhimento de convidados;</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-gold mt-0.5"></i> Suporte contínuo aos noivos e pais;</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-gold mt-0.5"></i> Gestão do cronograma e atrações;</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-gold mt-0.5"></i> Coordenação geral dos fornecedores.</li>
+                        </ul>
+                    </div>
+
+                    <!-- ANIVERSÁRIOS E OUTROS EVENTOS -->
+                    <div class="luxury-card p-8 rounded-3xl space-y-4 border-t-4 border-t-brand-accentDark">
+                        <div class="flex items-center gap-3 border-b border-brand-pinkLight pb-4">
+                            <i class="fa-solid fa-champagne-glasses text-brand-accentDark text-2xl"></i>
+                            <h3 class="font-serif-title text-2xl font-semibold text-brand-dark">Outros Eventos</h3>
+                        </div>
+                        <ul class="text-xs text-brand-dark/80 space-y-2.5 leading-relaxed">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-accentDark mt-0.5"></i> Aniversários e celebrações familiares;</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-accentDark mt-0.5"></i> Organização e logística geral;</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-accentDark mt-0.5"></i> Recepção e acompanhamento dos convidados;</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-accentDark mt-0.5"></i> Coordenação de apresentações e atrações;</li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-brand-accentDark mt-0.5"></i> Suporte atencioso durante o evento.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. NOSSO DIFERENCIAL EXCLUSIVO – ENSAIO DA VALSA PRINCIPAL -->
+        <section id="diferencial" class="py-20 max-w-6xl mx-auto px-6">
+            <div class="luxury-card p-8 sm:p-12 rounded-3xl border-2 border-brand-goldSoft bg-gradient-to-r from-brand-pastel/60 via-white to-brand-pastel/60 shadow-xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-brand-accent pointer-events-none">
+                    <i class="fa-solid fa-music text-[200px]"></i>
+                </div>
+                
+                <div class="max-w-3xl space-y-6 relative z-10">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-goldSoft/80 border border-brand-gold text-brand-dark text-xs font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-star text-brand-gold"></i> Nosso Diferencial Exclusivo
+                    </div>
+
+                    <h2 class="font-display text-4xl sm:text-5xl font-semibold text-brand-dark leading-tight">
+                        Ensaio da Valsa Principal
+                    </h2>
+
+                    <p class="text-sm sm:text-base text-brand-dark/80 leading-relaxed font-light">
+                        Na <strong>Duarte & Souza Cerimonial</strong>, queremos que a <strong>debutante (e seu par) ou os noivos</strong> vivam cada segundo com extrema segurança e leveza.
+                    </p>
+
+                    <p class="text-xs sm:text-sm text-brand-dark/80 leading-relaxed">
+                        Por isso, ao contratar nossos serviços, oferecemos o nosso <strong>acompanhamento e orientação dedicada durante os ensaios da valsa principal</strong>. Ajudamos vocês a se prepararem para brilharem na pista nesse momento inesquecível!
+                    </p>
+
+                    <div class="pt-2">
+                        <a href="https://wa.me/5519991598383?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20diferencial%20do%20ensaio%20da%20valsa." target="_blank" class="inline-flex items-center gap-3 bg-brand-accent hover:bg-brand-accentDark text-white px-7 py-3.5 rounded-full text-xs font-semibold uppercase tracking-wider shadow-md transition-all">
+                            <i class="fa-brands fa-whatsapp text-lg"></i> Saber Mais no WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. COMO FUNCIONA? (PASSOS REORGANIZADOS EM 6 ETAPAS) -->
+        <section id="como-funciona" class="py-20 bg-white/70 border-y border-brand-pinkLight/60">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+                    <span class="text-xs uppercase tracking-[0.3em] text-brand-accent font-semibold">Passo a Passo em 6 Etapas</span>
+                    <h2 class="font-display text-4xl sm:text-5xl font-semibold text-brand-dark">Como Trabalhamos</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="luxury-card p-6 rounded-2xl space-y-2 border-l-4 border-l-brand-accent">
+                        <span class="text-xs font-bold text-brand-accent uppercase tracking-widest">Etapa 01</span>
+                        <h4 class="font-serif-title text-lg font-semibold text-brand-dark">Reunião Inicial</h4>
+                        <p class="text-xs text-brand-dark/70 leading-relaxed">Entendemos os desejos, necessidades e todas as expectativas para o evento.</p>
+                    </div>
+
+                    <div class="luxury-card p-6 rounded-2xl space-y-2 border-l-4 border-l-brand-accent">
+                        <span class="text-xs font-bold text-brand-accent uppercase tracking-widest">Etapa 02</span>
+                        <h4 class="font-serif-title text-lg font-semibold text-brand-dark">Planejamento</h4>
+                        <p class="text-xs text-brand-dark/70 leading-relaxed">Organizamos todas as informações e definimos os detalhes estratégicos.</p>
+                    </div>
+
+                    <div class="luxury-card p-6 rounded-2xl space-y-2 border-l-4 border-l-brand-accent">
+                        <span class="text-xs font-bold text-brand-accent uppercase tracking-widest">Etapa 03</span>
+                        <h4 class="font-serif-title text-lg font-semibold text-brand-dark">Visita Técnica</h4>
+                        <p class="text-xs text-brand-dark/70 leading-relaxed">Quando contratada, visitamos o espaço para alinhar a logística no local.</p>
+                    </div>
+
+                    <div class="luxury-card p-6 rounded-2xl space-y-2 border-l-4 border-l-brand-accent">
+                        <span class="text-xs font-bold text-brand-accent uppercase tracking-widest">Etapa 04</span>
+                        <h4 class="font-serif-title text-lg font-semibold text-brand-dark">Elaboração do Roteiro</h4>
+                        <p class="text-xs text-brand-dark/70 leading-relaxed">Criamos o cronograma e o roteiro protocolar alinhados com a família.</p>
+                    </div>
+
+                    <div class="luxury-card p-6 rounded-2xl space-y-2 border-l-4 border-l-brand-accent">
+                        <span class="text-xs font-bold text-brand-accent uppercase tracking-widest">Etapa 05</span>
+                        <h4 class="font-serif-title text-lg font-semibold text-brand-dark">Alinhamento com Fornecedores</h4>
+                        <p class="text-xs text-brand-dark/70 leading-relaxed">Mantemos contato contínuo com buffet, DJ, foto e decoração.</p>
+                    </div>
+
+                    <div class="luxury-card p-6 rounded-2xl space-y-2 border-l-4 border-l-brand-accent">
+                        <span class="text-xs font-bold text-brand-accent uppercase tracking-widest">Etapa 06</span>
+                        <h4 class="font-serif-title text-lg font-semibold text-brand-dark">Coordenação no Dia</h4>
+                        <p class="text-xs text-brand-dark/70 leading-relaxed">Nossa equipe acompanha do início ao fim para que tudo ocorra com serenidade.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. NOSSOS PACOTES (OS 3 PACOTES SOLICITADOS) -->
+        <section id="pacotes" class="py-20 max-w-6xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+                <span class="text-xs uppercase tracking-[0.3em] text-brand-accent font-semibold">Opções de Contratação</span>
+                <h2 class="font-display text-4xl sm:text-5xl font-semibold text-brand-dark">Nossos Pacotes</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- PACOTE 1: CERIMONIAL DO DIA -->
+                <div class="luxury-card p-8 rounded-3xl flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <i class="fa-solid fa-clock text-brand-accent text-3xl"></i>
+                        <h3 class="font-serif-title text-2xl font-semibold text-brand-dark">Cerimonial do Dia</h3>
+                        <p class="text-xs text-brand-dark/70 leading-relaxed">
+                            A família já contratou buffet, DJ e decoração. A D&S chega antes, confere tudo, orienta os fornecedores e coordena as entradas, joias, valsas e abertura da pista.
+                        </p>
+                    </div>
+                    <a href="https://wa.me/5519991598383?text=Olá!%20Interesse%20no%20Pacote%20Cerimonial%20do%20Dia." target="_blank" class="w-full text-center bg-white hover:bg-brand-pastel text-brand-dark border border-brand-pinkLight py-3 rounded-full text-xs font-semibold uppercase tracking-wider transition-all">Consultar Orçamento</a>
+                </div>
+
+                <!-- PACOTE 2: PLANEJAMENTO PRÓXIMO + DIA (DESTAQUE) -->
+                <div class="luxury-card p-8 rounded-3xl border-2 border-brand-accent flex flex-col justify-between space-y-6 relative bg-white shadow-xl scale-105">
+                    <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-brand-accent text-white px-4 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest">Recomendado</span>
+                    <div class="space-y-4">
+                        <i class="fa-solid fa-calendar-check text-brand-accent text-3xl"></i>
+                        <h3 class="font-serif-title text-2xl font-semibold text-brand-dark">Planejamento Próximo + Dia</h3>
+                        <p class="text-xs text-brand-dark/70 leading-relaxed">
+                            Além de executar tudo do cerimonial do dia, a D&S conversa nas semanas anteriores, prepara o cronograma, confirma músicas, alinha homenagens e verifica detalhes com fornecedores.
+                        </p>
+                    </div>
+                    <a href="https://wa.me/5519991598383?text=Olá!%20Interesse%20no%20Pacote%20Planejamento%20Próximo%20%2B%20Dia." target="_blank" class="w-full text-center bg-brand-accent hover:bg-brand-accentDark text-white py-3 rounded-full text-xs font-semibold uppercase tracking-wider transition-all">Solicitar Orçamento</a>
+                </div>
+
+                <!-- PACOTE 3: PLANEJAMENTO COMPLETO -->
+                <div class="luxury-card p-8 rounded-3xl flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <i class="fa-solid fa-wand-magic-sparkles text-brand-accent text-3xl"></i>
+                        <h3 class="font-serif-title text-2xl font-semibold text-brand-dark">Planejamento Completo</h3>
+                        <p class="text-xs text-brand-dark/70 leading-relaxed">
+                            A D&S também ajuda a pesquisar fornecedores, solicitar orçamentos e organizar as contratações desde o início, dentro do escopo contratado para o evento.
+                        </p>
+                    </div>
+                    <a href="https://wa.me/5519991598383?text=Olá!%20Interesse%20no%20Pacote%20Planejamento%20Completo." target="_blank" class="w-full text-center bg-white hover:bg-brand-pastel text-brand-dark border border-brand-pinkLight py-3 rounded-full text-xs font-semibold uppercase tracking-wider transition-all">Saiba Mais</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. NOSSOS PARCEIROS RECOMENDADOS -->
+        <section id="parceiros" class="py-20 bg-white/70 border-y border-brand-pinkLight/60">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+                    <span class="text-xs uppercase tracking-[0.3em] text-brand-accent font-semibold">Parcerias de Confiança</span>
+                    <h2 class="font-display text-4xl sm:text-5xl font-semibold text-brand-dark">Nossos Parceiros</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <!-- PARCEIRO 1: DSV TOUR -->
+                    <div class="luxury-card p-8 rounded-3xl space-y-5 text-center flex flex-col justify-between items-center">
+                        <div class="space-y-4">
+                            <div class="w-16 h-16 rounded-full bg-brand-pastel flex items-center justify-center mx-auto text-brand-accent text-2xl">
+                                <i class="fa-solid fa-plane"></i>
+                            </div>
+                            <h3 class="font-serif-title text-2xl font-semibold text-brand-dark">DSV Tour Viagens</h3>
+                            <p class="text-xs text-brand-dark/70 leading-relaxed">
+                                A <strong>DSV Tour Viagens</strong> é nossa parceira especializada em transformar sonhos em destinos inesquecíveis. Com assessoria completa para viagens de lua de mel, pacotes comemorativos e roteiros personalizados, garantimos que a extensão da sua celebração seja perfeita.
+                            </p>
+                        </div>
+                        <a href="https://instagram.com/dsvtour.viagens" target="_blank" class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-wider shadow-md transition-all">
+                            <i class="fa-brands fa-instagram text-base"></i> Ver Instagram @dsvtour.viagens
+                        </a>
+                    </div>
+
+                    <!-- PARCEIRO 2: AKC FEST -->
+                    <div class="luxury-card p-8 rounded-3xl space-y-5 text-center flex flex-col justify-between items-center">
+                        <div class="space-y-4">
+                            <div class="w-16 h-16 rounded-full bg-brand-pastel flex items-center justify-center mx-auto text-brand-accent text-2xl">
+                                <i class="fa-solid fa-champagne-glasses"></i>
+                            </div>
+                            <h3 class="font-serif-title text-2xl font-semibold text-brand-dark">AKC Fest</h3>
+                            <p class="text-xs text-brand-dark/70 leading-relaxed">
+                                A <strong>AKC Fest</strong> é nossa referência em decoração, estrutura cenográfica e locação de itens de alto padrão para festas. Com um acervo variado e atendimento impecável, eles ajudam a dar vida e elegância a cada detalhe do ambiente do seu evento.
+                            </p>
+                        </div>
+                        <a href="https://instagram.com/akcfest" target="_blank" class="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-wider shadow-md transition-all">
+                            <i class="fa-brands fa-instagram text-base"></i> Ver Instagram @akcfest
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. DEPOIMENTOS -->
+        <section id="depoimentos" class="py-20 max-w-6xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+                <span class="text-xs uppercase tracking-[0.3em] text-brand-accent font-semibold">Avaliações Reais</span>
+                <h2 class="font-display text-4xl sm:text-5xl font-semibold text-brand-dark">O que dizem as nossas famílias</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="luxury-card p-6 rounded-3xl space-y-4">
+                    <div class="flex text-amber-400 text-xs gap-1">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-xs text-brand-dark/80 italic leading-relaxed">"A equipe da D&S fez toda a diferença no aniversário de 15 anos da nossa filha. Cuidaram das homenagens e do ensaio da valsa perfeitamente!"</p>
+                    <h4 class="font-bold text-xs text-brand-dark uppercase tracking-wider">Família de Lara</h4>
+                </div>
+
+                <div class="luxury-card p-6 rounded-3xl space-y-4">
+                    <div class="flex text-amber-400 text-xs gap-1">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-xs text-brand-dark/80 italic leading-relaxed">"Pude curtir a festa do começo ao fim sem me preocupar com os fornecedores. Profissionalismo e carinho impecáveis."</p>
+                    <h4 class="font-bold text-xs text-brand-dark uppercase tracking-wider">Família Oliveira</h4>
+                </div>
+
+                <div class="luxury-card p-6 rounded-3xl space-y-4">
+                    <div class="flex text-amber-400 text-xs gap-1">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-xs text-brand-dark/80 italic leading-relaxed">"O alinhamento do cronograma no dia do casamento nos trouxe muita tranquilidade. Recomendo de olhos fechados!"</p>
+                    <h4 class="font-bold text-xs text-brand-dark uppercase tracking-wider">Ana & Marcelo</h4>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. RODAPÉ FINAL DE CONTATO -->
+        <section class="py-20 bg-white/80 border-t border-brand-pinkLight/60">
+            <div class="max-w-4xl mx-auto px-6 text-center space-y-8">
+                <h2 class="font-display text-4xl sm:text-6xl font-semibold text-brand-dark">Vamos criar algo incrível juntos!</h2>
+                <p class="text-xs sm:text-sm text-brand-dark/70 uppercase tracking-widest">Entre em contato e agende sua reunião com a gente.</p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                    <a href="https://wa.me/5519991598383" target="_blank" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-full font-semibold text-xs uppercase tracking-widest shadow-lg transition-all flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Falar no WhatsApp (19) 99159-8383</span>
+                    </a>
+                    <a href="https://instagram.com/descerimonial" target="_blank" class="w-full sm:w-auto bg-brand-accent hover:bg-brand-accentDark text-white px-8 py-4 rounded-full font-semibold text-xs uppercase tracking-widest shadow-lg transition-all flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-instagram text-lg"></i>
+                        <span>@descerimonial</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- RODAPÉ PRINCIPAL -->
+    <footer class="bg-brand-dark text-white py-8 border-t border-brand-accent/40 text-center text-xs tracking-wider space-y-2">
+        <p class="font-display text-lg text-brand-pinkLight">Duarte & Souza Cerimonial</p>
+        <p class="text-white/50 text-[10px]">© Todos os direitos reservados. Duarte & Souza Cerimonial.</p>
+    </footer>
+
+    <!-- MODAL ADMIN (LOGIN) -->
+    <div id="loginModal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 hidden items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md p-8 rounded-3xl shadow-2xl border border-brand-pinkLight space-y-6">
+            <div class="flex justify-between items-center border-b border-brand-pinkLight pb-4">
+                <h3 class="font-serif-title text-2xl font-bold text-brand-dark">Acesso Restrito Admin</h3>
+                <button onclick="closeLoginModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            
+            <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-brand-dark uppercase tracking-wider mb-2">E-mail</label>
+                    <input type="email" id="adminUser" required class="w-full px-4 py-3 rounded-xl border border-brand-pinkLight focus:outline-none focus:border-brand-accent bg-brand-bg">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-brand-dark uppercase tracking-wider mb-2">Senha</label>
+                    <input type="password" id="adminPass" required class="w-full px-4 py-3 rounded-xl border border-brand-pinkLight focus:outline-none focus:border-brand-accent bg-brand-bg">
+                </div>
+                <div id="loginError" class="text-xs text-red-500 hidden font-semibold">Credenciais incorretas.</div>
+                <button type="submit" class="w-full bg-brand-accent hover:bg-brand-accentDark text-white py-3.5 rounded-xl font-semibold text-xs uppercase tracking-wider transition-all shadow-md">
+                    Entrar no Painel
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL: ADICIONAR NOVO CARD NO PORTFÓLIO -->
+    <div id="cardModal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 hidden items-center justify-center p-4">
+        <div class="bg-white w-full max-w-lg max-h-[92vh] overflow-y-auto p-8 rounded-3xl shadow-2xl border border-brand-pinkLight space-y-5">
+            <div class="flex justify-between items-center border-b border-brand-pinkLight pb-4">
+                <h3 class="font-serif-title text-2xl font-bold text-brand-dark">Novo card do portfólio</h3>
+                <button onclick="closeCardModal()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+
+            <!-- ETIQUETA -->
+            <div>
+                <label class="block text-xs font-semibold text-brand-dark uppercase tracking-wider mb-2">Etiqueta (tag)</label>
+                <div id="tagChips" class="flex flex-wrap gap-2"></div>
+
+                <div id="newTagForm" class="hidden mt-4 p-4 rounded-2xl bg-brand-bg border border-brand-pinkLight space-y-3">
+                    <input type="text" id="newTagName" maxlength="28" placeholder="Nome da nova tag (ex: Aniversário)" class="w-full px-4 py-2.5 rounded-xl border border-brand-pinkLight focus:outline-none focus:border-brand-accent bg-white text-sm">
+                    <div>
+                        <span class="block text-[11px] font-semibold text-brand-dark/70 mb-2">Escolha a cor</span>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <div id="swatches" class="flex flex-wrap gap-2"></div>
+                            <label class="flex items-center gap-2 text-[11px] text-brand-dark/70 ml-2">
+                                outra:
+                                <input type="color" id="newTagColor" value="#7D4F8D" class="w-9 h-9 p-0 border-0 bg-transparent cursor-pointer">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button type="button" onclick="createNewTag()" class="bg-brand-accent hover:bg-brand-accentDark text-white px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider">Criar tag</button>
+                        <button type="button" onclick="toggleNewTagForm(false)" class="text-xs text-brand-dark/60 hover:text-brand-dark">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NOME -->
+            <div>
+                <label class="block text-xs font-semibold text-brand-dark uppercase tracking-wider mb-2">Nome do evento</label>
+                <input type="text" id="newCardTitle" maxlength="40" placeholder="Ex: MARIANA XV ANOS" class="w-full px-4 py-3 rounded-xl border border-brand-pinkLight focus:outline-none focus:border-brand-accent bg-brand-bg">
+            </div>
+
+            <!-- DESCRIÇÃO CURTA -->
+            <div>
+                <label class="block text-xs font-semibold text-brand-dark uppercase tracking-wider mb-2">Descrição curta</label>
+                <input type="text" id="newCardDesc" maxlength="70" placeholder="Ex: Baile dos Sonhos & Ensaio da Valsa" class="w-full px-4 py-3 rounded-xl border border-brand-pinkLight focus:outline-none focus:border-brand-accent bg-brand-bg">
+            </div>
+
+            <!-- FOTO DO COMPUTADOR -->
+            <div>
+                <label class="block text-xs font-semibold text-brand-dark uppercase tracking-wider mb-2">Foto</label>
+                <input type="file" id="newCardImageInput" accept="image/*" class="hidden" onchange="handleNewCardImage(event)">
+                <button type="button" onclick="document.getElementById('newCardImageInput').click()" class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl border-2 border-dashed border-brand-pinkLight hover:border-brand-accent hover:bg-brand-pastel/50 text-brand-accent text-xs font-semibold uppercase tracking-wider transition-all">
+                    <i class="fa-solid fa-image"></i> Escolher foto do computador
+                </button>
+                <img id="newCardPreview" alt="Pré-visualização" class="hidden mt-3 w-full h-48 object-cover rounded-2xl border border-brand-pinkLight">
+            </div>
+
+            <div id="cardError" class="text-xs text-red-500 hidden font-semibold"></div>
+
+            <div class="flex items-center justify-end gap-3 pt-2">
+                <button type="button" onclick="closeCardModal()" class="px-5 py-3 rounded-full text-xs font-semibold uppercase tracking-wider text-brand-dark/70 hover:bg-brand-pastel transition-all">Cancelar</button>
+                <button type="button" onclick="confirmNewCard()" class="bg-brand-accent hover:bg-brand-accentDark text-white px-8 py-3 rounded-full text-xs font-semibold uppercase tracking-wider shadow-md transition-all">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        /* ============ CONFIGURAÇÃO DO BANCO (SUPABASE) ============
+           Cole aqui os dois dados do seu projeto (Project Settings > API).
+           A chave "anon/public" PODE ficar visível na página. NUNCA cole a chave secreta (service_role). */
+        const SUPABASE_URL = 'https://zyjkqyubxlzftomthkdq.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_mbO2241jchLaUTbjCuWHXw_PYXIkPua';
+        const BUCKET = 'portfolio';
+
+        const supabaseReady = !SUPABASE_URL.startsWith('COLE') && !SUPABASE_ANON_KEY.startsWith('COLE') && window.supabase;
+        const sb = supabaseReady ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+        let currentLoggedUser = null;
+        let activeTargetImgId = null;
+        let deletedIds = [];
+
+        function uuid() {
+            if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                const r = Math.random() * 16 | 0;
+                return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+            });
+        }
+
+        /* ============ LOGIN / MODO ADMIN ============ */
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+            document.getElementById('loginModal').classList.add('flex');
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+            document.getElementById('loginModal').classList.remove('flex');
+        }
+
+        function showLoginError(msg) {
+            const e = document.getElementById('loginError');
+            e.textContent = msg;
+            e.classList.remove('hidden');
+        }
+
+        async function handleAdminLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('adminUser').value.trim();
+            const pass = document.getElementById('adminPass').value;
+
+            if (!sb) { showLoginError('O banco de dados ainda não foi configurado no site.'); return; }
+
+            const { data, error } = await sb.auth.signInWithPassword({ email: email, password: pass });
+            if (error || !data.user) { showLoginError('E-mail ou senha incorretos.'); return; }
+
+            currentLoggedUser = data.user.email;
+            document.getElementById('loginError').classList.add('hidden');
+            document.getElementById('adminPass').value = '';
+            closeLoginModal();
+            enableAdminMode();
+        }
+
+        function enableAdminMode() {
+            document.getElementById('adminToolbar').classList.remove('hidden');
+            document.getElementById('loggedUserDisplay').innerText = currentLoggedUser;
+            document.getElementById('adminNavStatus').innerText = 'Admin Conectado';
+
+            document.querySelectorAll('.edit-text').forEach(el => {
+                el.setAttribute('contenteditable', 'true');
+            });
+
+            document.querySelectorAll('.admin-only').forEach(el => {
+                el.classList.remove('hidden');
+            });
+        }
+
+        function logoutAdmin() {
+            if (sb) sb.auth.signOut();
+            currentLoggedUser = null;
+            document.getElementById('adminToolbar').classList.add('hidden');
+            document.getElementById('adminNavStatus').innerText = 'Área Admin';
+
+            document.querySelectorAll('.edit-text').forEach(el => {
+                el.removeAttribute('contenteditable');
+            });
+
+            document.querySelectorAll('.admin-only').forEach(el => {
+                el.classList.add('hidden');
+            });
+        }
+
+        async function restoreSession() {
+            if (!sb) return;
+            const { data } = await sb.auth.getSession();
+            if (data && data.session) {
+                currentLoggedUser = data.session.user.email;
+                enableAdminMode();
+            }
+        }
+
+        /* ============ IMAGENS (GALERIA DO CELULAR / COMPUTADOR) ============ */
+        // Reduz a foto (máx. 1000px) para a página carregar rápido
+        function readImageFile(file, callback) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const img = new Image();
+                img.onload = function () {
+                    const maxW = 1000;
+                    const scale = Math.min(1, maxW / img.width);
+                    const canvas = document.createElement('canvas');
+                    canvas.width = Math.round(img.width * scale);
+                    canvas.height = Math.round(img.height * scale);
+                    canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+                    callback(canvas.toDataURL('image/jpeg', 0.82));
+                };
+                img.onerror = function () { callback(e.target.result); };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function triggerDeviceUpload(imgId) {
+            activeTargetImgId = imgId;
+            document.getElementById('deviceImagePicker').click();
+        }
+
+        function handleImageSelected(event) {
+            const file = event.target.files[0];
+            if (file && activeTargetImgId) {
+                readImageFile(file, function (dataUrl) {
+                    document.getElementById(activeTargetImgId).src = dataUrl;
+                });
+            }
+            event.target.value = '';
+        }
+
+        /* ============ PORTFÓLIO: TAGS, CARDS E FILTROS ============ */
+        // Valores de reserva, usados só se o banco não estiver configurado ou estiver fora do ar
+        let tags = [
+            { id: '15anos', label: '15 Anos', color: '#7D4F8D' },
+            { id: 'casamento', label: 'Casamentos', color: '#D4AF37' },
+            { id: 'corporativo', label: 'Corporativo / Parceiros', color: '#DB2777' }
+        ];
+
+        let cards = [
+            { tag: '15anos', title: 'LARA XV ANOS', desc: 'Baile dos Sonhos & Ensaio da Valsa', img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80' },
+            { tag: '15anos', title: 'LAURA XV ANOS', desc: 'Noite Mágica & Recepção Inesquecível', img: 'https://images.unsplash.com/photo-1544078751-58fee2d8a03b?auto=format&fit=crop&w=800&q=80' },
+            { tag: 'corporativo', title: 'BFASHION PINK DAY', desc: 'Evento de Moda & Recepção VIP', img: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=800&q=80' },
+            { tag: 'casamento', title: 'CERIMÔNIA & FESTA', desc: 'Coordenação de Casamentos Elegantes', img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80' }
+        ];
+
+        const SWATCH_COLORS = ['#7D4F8D', '#DB2777', '#D4AF37', '#0F766E', '#2563EB', '#EA580C', '#16A34A', '#2A1F2D'];
+
+        let currentFilter = 'all';
+        let selectedTagId = null;
+        let newCardImg = null;
+        let imgCounter = 0;
+
+        function textColorFor(hex) {
+            const h = hex.replace('#', '');
+            const r = parseInt(h.substr(0, 2), 16), g = parseInt(h.substr(2, 2), 16), b = parseInt(h.substr(4, 2), 16);
+            const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+            return lum > 0.62 ? '#2A1F2D' : '#FFFFFF';
+        }
+
+        function getTag(id) {
+            return tags.find(t => t.id === id) || { id: id, label: 'Evento', color: '#7D4F8D' };
+        }
+
+        function paintBadge(badge, tagId) {
+            const t = getTag(tagId);
+            badge.textContent = t.label;
+            badge.style.backgroundColor = t.color;
+            badge.style.color = textColorFor(t.color);
+        }
+
+        function renderFilters() {
+            const box = document.getElementById('portfolioFilters');
+            box.innerHTML = '';
+            const make = (id, label) => {
+                const b = document.createElement('button');
+                b.className = 'portfolio-btn px-5 py-2 rounded-full text-xs font-semibold shadow-sm ' +
+                    (currentFilter === id ? 'bg-brand-accent text-white' : 'bg-white hover:bg-brand-pastel text-brand-dark border border-brand-pinkLight');
+                b.textContent = label;
+                b.onclick = () => filterPortfolio(id);
+                box.appendChild(b);
+            };
+            make('all', 'Todos os Eventos');
+            tags.forEach(t => make(t.id, t.label));
+        }
+
+        function filterPortfolio(category) {
+            currentFilter = category;
+            document.querySelectorAll('.portfolio-item').forEach(item => {
+                item.style.display = (category === 'all' || item.dataset.tag === category) ? 'block' : 'none';
+            });
+            renderFilters();
+        }
+
+        function createCardElement(data) {
+            imgCounter++;
+            const imgId = 'portImg' + imgCounter;
+            const el = document.createElement('div');
+            el.className = 'portfolio-item luxury-card rounded-3xl overflow-hidden luxury-card-hover group';
+            el.dataset.tag = data.tag;
+            el.dataset.id = data.id || uuid();
+            el.innerHTML =
+                '<div class="relative h-72">' +
+                    '<img id="' + imgId + '" class="card-img w-full h-full object-cover" alt="">' +
+                    '<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>' +
+                    '<div class="absolute bottom-4 left-4 right-4 text-white">' +
+                        '<span class="card-badge text-[9px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-full inline-block mb-1"></span>' +
+                        '<h3 class="card-title font-serif-title text-xl font-bold edit-text"></h3>' +
+                        '<p class="card-desc text-xs text-brand-pinkLight edit-text"></p>' +
+                    '</div>' +
+                    '<button type="button" class="card-replace admin-only hidden absolute top-4 right-4 bg-white text-brand-dark px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1.5 shadow-md"><i class="fa-solid fa-image"></i> Galeria</button>' +
+                    '<button type="button" class="card-remove admin-only hidden absolute top-4 left-4 bg-red-600 text-white w-8 h-8 rounded-full text-xs shadow-md flex items-center justify-center" title="Remover card"><i class="fa-solid fa-trash"></i></button>' +
+                '</div>';
+
+            const img = el.querySelector('.card-img');
+            img.src = data.img;
+            img.alt = data.title;
+            el.querySelector('.card-title').textContent = data.title;
+            el.querySelector('.card-desc').textContent = data.desc;
+            paintBadge(el.querySelector('.card-badge'), data.tag);
+            el.querySelector('.card-replace').onclick = () => triggerDeviceUpload(imgId);
+            el.querySelector('.card-remove').onclick = () => {
+                if (confirm('Remover este card do portfólio? (depois clique em Salvar Alterações)')) {
+                    deletedIds.push(el.dataset.id);
+                    el.remove();
+                }
+            };
+
+            if (currentLoggedUser) {
+                el.querySelectorAll('.edit-text').forEach(x => x.setAttribute('contenteditable', 'true'));
+                el.querySelectorAll('.admin-only').forEach(x => x.classList.remove('hidden'));
+            }
+            return el;
+        }
+
+        function renderPortfolio() {
+            const grid = document.getElementById('portfolioGrid');
+            grid.innerHTML = '';
+            cards.forEach(c => grid.appendChild(createCardElement(c)));
+            filterPortfolio(currentFilter);
+        }
+
+        /* ---------- Painel "novo card" ---------- */
+        function renderTagChips() {
+            const box = document.getElementById('tagChips');
+            box.innerHTML = '';
+            tags.forEach(t => {
+                const chip = document.createElement('button');
+                chip.type = 'button';
+                chip.className = 'tag-chip' + (t.id === selectedTagId ? ' selected' : '');
+                chip.style.backgroundColor = t.color;
+                chip.style.color = textColorFor(t.color);
+                chip.textContent = t.label;
+                chip.onclick = () => { selectedTagId = t.id; renderTagChips(); };
+                box.appendChild(chip);
+            });
+            const add = document.createElement('button');
+            add.type = 'button';
+            add.className = 'tag-chip bg-white text-brand-accent border-brand-accent';
+            add.style.borderStyle = 'dashed';
+            add.innerHTML = '<i class="fa-solid fa-plus"></i> Nova tag';
+            add.onclick = () => toggleNewTagForm(true);
+            box.appendChild(add);
+        }
+
+        function renderSwatches() {
+            const box = document.getElementById('swatches');
+            const current = document.getElementById('newTagColor').value.toLowerCase();
+            box.innerHTML = '';
+            SWATCH_COLORS.forEach(c => {
+                const s = document.createElement('button');
+                s.type = 'button';
+                s.className = 'swatch' + (c.toLowerCase() === current ? ' selected' : '');
+                s.style.backgroundColor = c;
+                s.onclick = () => { document.getElementById('newTagColor').value = c; renderSwatches(); };
+                box.appendChild(s);
+            });
+        }
+
+        function toggleNewTagForm(show) {
+            document.getElementById('newTagForm').classList.toggle('hidden', !show);
+            if (show) {
+                document.getElementById('newTagName').value = '';
+                renderSwatches();
+                document.getElementById('newTagName').focus();
+            }
+        }
+
+        function createNewTag() {
+            const name = document.getElementById('newTagName').value.trim();
+            const color = document.getElementById('newTagColor').value;
+            if (!name) { showCardError('Dê um nome para a nova tag.'); return; }
+            if (tags.some(t => t.label.toLowerCase() === name.toLowerCase())) {
+                showCardError('Já existe uma tag com esse nome.'); return;
+            }
+            let id = name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'tag';
+            while (tags.some(t => t.id === id)) id += '-x';
+            tags.push({ id: id, label: name, color: color });
+            selectedTagId = id;
+            hideCardError();
+            toggleNewTagForm(false);
+            renderTagChips();
+            renderFilters();
+        }
+
+        function showCardError(msg) {
+            const e = document.getElementById('cardError');
+            e.textContent = msg;
+            e.classList.remove('hidden');
+        }
+        function hideCardError() {
+            document.getElementById('cardError').classList.add('hidden');
+        }
+
+        function openCardModal() {
+            selectedTagId = tags.length ? tags[0].id : null;
+            newCardImg = null;
+            document.getElementById('newCardTitle').value = '';
+            document.getElementById('newCardDesc').value = '';
+            document.getElementById('newCardImageInput').value = '';
+            const prev = document.getElementById('newCardPreview');
+            prev.classList.add('hidden');
+            prev.removeAttribute('src');
+            hideCardError();
+            toggleNewTagForm(false);
+            renderTagChips();
+            const m = document.getElementById('cardModal');
+            m.classList.remove('hidden');
+            m.classList.add('flex');
+        }
+
+        function closeCardModal() {
+            const m = document.getElementById('cardModal');
+            m.classList.add('hidden');
+            m.classList.remove('flex');
+        }
+
+        function handleNewCardImage(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            readImageFile(file, function (dataUrl) {
+                newCardImg = dataUrl;
+                const prev = document.getElementById('newCardPreview');
+                prev.src = dataUrl;
+                prev.classList.remove('hidden');
+                hideCardError();
+            });
+        }
+
+        function confirmNewCard() {
+            const title = document.getElementById('newCardTitle').value.trim();
+            const desc = document.getElementById('newCardDesc').value.trim();
+            if (!selectedTagId) { showCardError('Escolha ou crie uma tag.'); return; }
+            if (!title) { showCardError('Escreva o nome do evento.'); return; }
+            if (!newCardImg) { showCardError('Escolha uma foto do computador.'); return; }
+
+            const data = { tag: selectedTagId, title: title, desc: desc, img: newCardImg };
+            document.getElementById('portfolioGrid').appendChild(createCardElement(data));
+            closeCardModal();
+
+            if (currentFilter !== 'all' && currentFilter !== selectedTagId) currentFilter = 'all';
+            filterPortfolio(currentFilter);
+        }
+
+        /* ============ BANCO DE DADOS: CARREGAR E SALVAR ============ */
+        async function loadPortfolioFromDatabase() {
+            if (!sb) return;
+            try {
+                const [t, c] = await Promise.all([
+                    sb.from('portfolio_tags').select('*').order('position', { ascending: true }),
+                    sb.from('portfolio_cards').select('*').order('position', { ascending: true }).order('created_at', { ascending: true })
+                ]);
+                if (t.error || c.error) throw (t.error || c.error);
+                if (t.data.length) {
+                    tags = t.data.map(x => ({ id: x.id, label: x.label, color: x.color }));
+                }
+                cards = c.data.map(x => ({ id: x.id, tag: x.tag_id, title: x.title, desc: x.description || '', img: x.image_url }));
+            } catch (err) {
+                console.error('Não foi possível carregar o portfólio do banco:', err);
+            }
+        }
+
+        async function uploadImage(dataUrl, cardId) {
+            const blob = await (await fetch(dataUrl)).blob();
+            const path = 'cards/' + cardId + '-' + Date.now() + '.jpg';
+            const up = await sb.storage.from(BUCKET).upload(path, blob, { contentType: 'image/jpeg', cacheControl: '31536000' });
+            if (up.error) throw up.error;
+            return sb.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+        }
+
+        async function saveAllChangesToCloud() {
+            if (!sb) {
+                alert('O banco de dados ainda não foi configurado no site (faltam a URL e a chave do Supabase).');
+                return;
+            }
+            const btn = document.getElementById('saveBtn');
+            const original = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Salvando...';
+
+            try {
+                const els = Array.from(document.querySelectorAll('#portfolioGrid .portfolio-item'));
+                const rows = [];
+                for (let i = 0; i < els.length; i++) {
+                    const el = els[i];
+                    const imgEl = el.querySelector('.card-img');
+                    let url = imgEl.src;
+                    if (url.startsWith('data:')) {
+                        url = await uploadImage(url, el.dataset.id);
+                        imgEl.src = url;
+                    }
+                    rows.push({
+                        id: el.dataset.id,
+                        tag_id: el.dataset.tag,
+                        title: el.querySelector('.card-title').textContent.trim(),
+                        description: el.querySelector('.card-desc').textContent.trim(),
+                        image_url: url,
+                        position: i
+                    });
+                }
+
+                let r = await sb.from('portfolio_tags').upsert(tags.map((t, i) => ({ id: t.id, label: t.label, color: t.color, position: i })));
+                if (r.error) throw r.error;
+
+                if (rows.length) {
+                    r = await sb.from('portfolio_cards').upsert(rows);
+                    if (r.error) throw r.error;
+                }
+
+                if (deletedIds.length) {
+                    r = await sb.from('portfolio_cards').delete().in('id', deletedIds);
+                    if (r.error) throw r.error;
+                    deletedIds = [];
+                }
+
+                alert('Alterações salvas! Todos os visitantes já veem o portfólio atualizado.');
+            } catch (err) {
+                console.error(err);
+                alert('Não foi possível salvar. Confira se você está logada e tente de novo.\n\n' + (err.message || ''));
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = original;
+            }
+        }
+
+        /* ============ INÍCIO ============ */
+        (async function init() {
+            await loadPortfolioFromDatabase();
+            renderFilters();
+            renderPortfolio();
+            await restoreSession();
+        })();
+    </script>
+</body>
+</html>
