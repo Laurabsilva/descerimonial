@@ -735,5 +735,80 @@
             alert('Suas alterações foram salvas na tela com sucesso!');
         }
     </script>
+    // Adiciona o botão de criar novos cards dinamicamente no Portfólio
+function setupDynamicPortfolio() {
+  const container = document.querySelector('.portfolio-grid') || document.querySelector('#portfolio .grid');
+  if (!container) return;
+
+  // Cria o botão de adicionar novo card se ele ainda não existir
+  if (!document.getElementById('add-card-btn')) {
+    const addBtnContainer = document.createElement('div');
+    addBtnContainer.className = 'col-span-full flex justify-center mt-6';
+    addBtnContainer.innerHTML = `
+      <button id="add-card-btn" onclick="addNewPortfolioCard()" class="hidden admin-only bg-purple-700 hover:bg-purple-800 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition flex items-center gap-2">
+        <i class="fas font-bold">+</i> Adicionar Novo Card no Portfólio
+      </button>
+    `;
+    container.parentNode.appendChild(addBtnContainer);
+  }
+}
+
+// Função para criar uma nova caixinha de evento no grid
+function addNewPortfolioCard() {
+  const container = document.querySelector('.portfolio-grid') || document.querySelector('#portfolio .grid');
+  if (!container) return;
+
+  const cardId = 'card-' + Date.now();
+  const newCard = document.createElement('div');
+  newCard.className = 'portfolio-item bg-white rounded-2xl overflow-hidden shadow-md border border-purple-100 relative group';
+  newCard.id = cardId;
+
+  newCard.innerHTML = `
+    <div class="relative h-64 overflow-hidden bg-gray-100">
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" 
+           alt="Novo Evento" 
+           class="w-full h-full object-cover transition duration-500 group-hover:scale-105 portfolio-img">
+      
+      <!-- Botão para carregar foto do celular -->
+      <div class="absolute top-3 right-3 z-10 hidden admin-only">
+        <label class="bg-purple-900/80 hover:bg-purple-900 text-white text-xs px-3 py-1.5 rounded-full cursor-pointer shadow backdrop-blur-sm flex items-center gap-1">
+          <span>📷 Galeria</span>
+          <input type="file" accept="image/*" class="hidden" onchange="uploadCardImage(event, '${cardId}')">
+        </label>
+      </div>
+    </div>
+    <div class="p-5">
+      <span class="text-xs font-semibold tracking-wider text-purple-600 uppercase bg-purple-50 px-2.5 py-1 rounded-full">Novo Evento</span>
+      <h3 class="text-lg font-bold text-gray-800 mt-2 cursor-pointer outline-none" contenteditable="true">NOME DO SEU EVENTO</h3>
+      <p class="text-sm text-gray-500 mt-1 cursor-pointer outline-none" contenteditable="true">Clique para editar a descrição do evento...</p>
+    </div>
+  `;
+
+  container.appendChild(newCard);
+  
+  // Garante que os controles do admin fiquem visíveis se o modo admin estiver ativo
+  if (document.body.classList.contains('admin-active')) {
+    newCard.querySelectorAll('.admin-only').forEach(el => el.classList.remove('hidden'));
+  }
+}
+
+// Função para processar a foto selecionada na galeria do dispositivo
+function uploadCardImage(event, cardId) {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const card = document.getElementById(cardId);
+    if (card) {
+      const img = card.querySelector('.portfolio-img');
+      if (img) img.src = e.target.result;
+    }
+  };
+  reader.readAsDataURL(file);
+}
+
+// Inicializa a função ao carregar a página
+document.addEventListener('DOMContentLoaded', setupDynamicPortfolio);
 </body>
 </html>
