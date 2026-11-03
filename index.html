@@ -1270,5 +1270,51 @@
             await restoreSession();
         })();
     </script>
+<script>
+(function () {
+    const SITE_SLOTS = ['headerLogoImg', 'heroImg', 'aboutImg1', 'aboutImg2'];
+
+    async function saveSiteImages() {
+        for (const slot of SITE_SLOTS) {
+            const el = document.getElementById(slot);
+            if (!el || !el.src.startsWith('data:')) continue;
+            const blob = await (await fetch(el.src)).blob();
+            const up = await sb.storage.from(BUCKET).upload('site/' + slot + '.jpg', blob, {
+                contentType: 'image/jpeg', upsert: true, cacheControl: '60'
+            });
+            if (up.error) throw up.error;
+            el.src = sb.storage.from(BUCKET).getPublicUrl('site/' + slot + '.jpg').data.publicUrl + '?v=' + Date.now();
+        }
+    }
+
+    function loadSiteImages() {
+        if (!sb) return;
+        SITE_SLOTS.forEach(function (slot) {
+            const url = sb.storage.from(BUCKET).getPublicUrl('site/' + slot + '.jpg').data.publicUrl + '?v=' + Date.now();
+            const probe = new Image();
+            probe.onload = function () {
+                const el = document.getElementById(slot);
+                if (el) el.src = url;
+            };
+            probe.src = url;
+        });
+    }
+
+    const originalSave = window.saveAllChangesToCloud;
+    window.saveAllChangesToCloud = async function () {
+        if (sb) {
+            try {
+                await saveSiteImages();
+            } catch (err) {
+                console.error(err);
+                alert('As fotos do topo e da logo não puderam ser salvas: ' + (err.message || err));
+            }
+        }
+        return originalSave();
+    };
+
+    loadSiteImages();
+})();
+</script>
 </body>
 </html>
